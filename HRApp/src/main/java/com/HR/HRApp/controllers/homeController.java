@@ -10,14 +10,14 @@ public class homeController {
 
     private final accountRepository accountRepository;
 
-    public homeController(com.HR.HRApp.repositories.accountRepository accountRepository) {
+    public homeController(accountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
 
     @RequestMapping("/home")
     public String getAccounts(Model model){
 
-        model.addAttribute("Accounts", accountRepository.findAll());
+        model.addAttribute("accounts", accountRepository.findAll());
         return "accounts/accountList";
     }
 }
