@@ -6,18 +6,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class accountController {
+public class loginController {
 
     private final accountRepository accountRepository;
 
-    public accountController(accountRepository accountRepository) {
+    public loginController(accountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
 
-    @RequestMapping("/Accounts")
-    public String getAccounts(Model model){
+    @RequestMapping("/")
+    public String getLogin(Model model){
 
         model.addAttribute("Accounts", accountRepository.findAll());
-        return "Accounts/list";
+        return "accounts/list";
+    }
+
+    @RequestMapping("/Login")
+    public String getOtherLogin(Model model){
+
+        model.addAttribute("Accounts", accountRepository.findAll());
+        return "accounts/list";
     }
 }
