@@ -18,7 +18,7 @@ public class bootStrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        account tmp1 = new account(2, "John", "Doe", "Admin", "Admin".toCharArray());
+        account tmp1 = new account(2, "John", "Doe", "Admin", "password123");
         accountRepository.save(tmp1);
 
         staff tmp = new staff();
