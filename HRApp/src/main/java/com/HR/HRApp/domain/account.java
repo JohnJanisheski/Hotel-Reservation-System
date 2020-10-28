@@ -1,7 +1,5 @@
 package com.HR.HRApp.domain;
 
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +26,7 @@ public class account {
 
     //Every account will have a username and password
     private String userName;
-    private char[] password;
+    private String password;
 
     public account() {
     }
@@ -39,7 +37,7 @@ public class account {
         this.userName = k.getUserName();
         this.password = k.getPassword();
     }
-    public account(int type, String firstName, String lastName, String userName, char[] password) {
+    public account(int type, String firstName, String lastName, String userName, String password) {
         this.type = type;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -76,10 +74,10 @@ public class account {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-    public char[] getPassword() {
+    public String getPassword() {
         return password;
     }
-    public void setPassword(char[] password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 }

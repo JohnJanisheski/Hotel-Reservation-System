@@ -6,18 +6,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class homeController {
+public class signUpController {
 
     private final accountRepository accountRepository;
 
-    public homeController(accountRepository accountRepository) {
+    public signUpController(accountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
 
-    @RequestMapping("/home")
-    public String getAccounts(Model model){
-
-        model.addAttribute("accounts", accountRepository.findAll());
-        return "accounts/accountList";
+    @RequestMapping("/signUp")
+    public String createAccounts(Model model){
+        model.addAttribute("Accounts", accountRepository.findAll());
+        return "accounts/signUp";
     }
 }
