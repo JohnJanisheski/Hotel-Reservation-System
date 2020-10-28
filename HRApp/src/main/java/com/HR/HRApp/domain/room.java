@@ -98,23 +98,5 @@ public class room {
         this.isClean = isClean;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        room room = (room) o;
-        return id == room.id &&
-                isLive == room.isLive &&
-                floor == room.floor &&
-                isClean == room.isClean &&
-                Objects.equals(roomName, room.roomName) &&
-                Objects.equals(remark, room.remark) &&
-                Objects.equals(image, room.image) &&
-                Objects.equals(roomType, room.roomType);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, roomName, remark, image, roomType, isLive, floor, isClean);
-    }
 }

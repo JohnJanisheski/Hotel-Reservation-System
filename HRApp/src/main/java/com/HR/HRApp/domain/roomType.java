@@ -105,23 +105,4 @@ public class roomType {
         isAllowSmoking = allowSmoking;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        roomType roomType = (roomType) o;
-        return id == roomType.id &&
-                Double.compare(roomType.price, price) == 0 &&
-                type == roomType.type &&
-                num == roomType.num &&
-                isAllowSmoking == roomType.isAllowSmoking &&
-                Objects.equals(roomTypeName, roomType.roomTypeName) &&
-                Objects.equals(image, roomType.image) &&
-                Objects.equals(rooms, roomType.rooms);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, roomTypeName, image, price, type, num, rooms, isAllowSmoking);
-    }
 }

@@ -30,7 +30,7 @@ public class bootStrapData implements CommandLineRunner {
     public void run(String... args) {
 
         //account
-        account tmp1 = new account(2, "John", "Doe", "Admin", "Admin".toCharArray());
+        account tmp1 = new account(2, "John", "Doe", "Admin", "Admin".toCharArray().toString());
         accountRepository.save(tmp1);
 
         staff tmp = new staff();
