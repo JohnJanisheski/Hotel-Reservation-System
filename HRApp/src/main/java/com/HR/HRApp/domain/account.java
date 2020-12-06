@@ -31,7 +31,7 @@ public class account {
     public account() {
     }
     public account(staff k){
-        this.type = k.getType();
+
         this.firstName = k.getFirstName();
         this.lastName = k.getLastName();
         this.userName = k.getUserName();

@@ -17,6 +17,8 @@ public class signUpController {
     @RequestMapping("/signUp")
     public String createAccounts(Model model){
         model.addAttribute("Accounts", accountRepository.findAll());
-        return "accounts/signUp";
+        return "Yuhui/register";
     }
+
+
 }

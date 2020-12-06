@@ -1,6 +1,7 @@
 package com.HR.HRApp.service;
 
 import com.HR.HRApp.domain.staff;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 

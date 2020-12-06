@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html style="height: 100%;width:100% ;">
+<html style="height: 100%;width:100% ;" xmlns:th="http://www.w3.org/1999/xhtml">
 <head> 
 <meta charset="utf-8"> 
 <title>person</title> 
-<link type="text/css" rel="stylesheet" href="css/login.css" />
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="../../css/login.css" />
+<link type="text/css" rel="stylesheet" href="../../css/bootstrap.min.css" />
 <style type="text/css">
 body{
-    width:100% ;background-image: url(images/1.jpg);height:auto; overflow: hidden;background-repeat: no-repeat;background-size: 100% 100%;
+    width:100% ;background-image: url(../../images/1.jpg);height:auto; overflow: hidden;background-repeat: no-repeat;background-size: 100% 100%;
 }
 .form-control{
     width: 300px;
@@ -36,6 +36,8 @@ body{
 			<input type="password" class="form-control" id="lastname" style="margin-left: 30px;"
 				   placeholder="please input your password">
 		</div>
+		<div class="col-sm-offset-2 col-sm-5">
+			<a th:href = "@{/showStaffloginPage}">Staff Login</a>
 	</div><br>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-5">
