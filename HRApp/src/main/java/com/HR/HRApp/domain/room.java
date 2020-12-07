@@ -20,6 +20,9 @@ public class room {
     @ManyToOne
     private roomType roomType;//room category
 
+    @ManyToOne
+    private reservation reservation;//Link to reservations
+
 
     public room() {
     }

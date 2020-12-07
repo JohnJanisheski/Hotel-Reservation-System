@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -16,6 +17,16 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+					 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+					 xmlns="http://www.springframework.org/schema/data/jpa"
+					 xsi:schemaLocation="http://www.springframework.org/schema/beans
+    		http://www.springframework.org/schema/beans/spring-beans.xsd
+    		http://www.springframework.org/schema/data/jpa
+    		http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+			<repositories base-package="com.HR.HRApp.repositories" />
+
+		</beans:beans>
 	</properties>
 
 	<dependencies>
@@ -57,5 +68,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

@@ -1,9 +1,19 @@
 package com.HR.HRApp.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
+import com.HR.HRApp.repositories.*;
+//import com.HR.HRApp.domain.manager;
+//import com.HR.HRApp.domain.customer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.stereotype.Component;
+import org.thymeleaf.context.IContext;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 //The User class is meant to be the basis of all of the users
 //This will be extended by customer, manager and Staff.
@@ -12,43 +22,50 @@ public class account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long account_id;
 
     //This will represent what kind of user the account is
     //0 - Customer
     //1 - Staff Member
     //2 - Manager
+    @Column(name = "account_type")
     private int type;
 
     //Every account will have a first and last name
+    @Column(name = "first_Name")
     private String firstName;
+    @Column(name = "last_Name")
     private String lastName;
 
     //Every account will have a Email and password
+    @Column(name = "email")
     private String Email;
+    @Column(name = "password")
     private String password;
 
-    public account() {
-    }
-    public account(staff k){
+    @Column(name = "order_History")
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "reservation_id")
+    private Set<reservation> orderHistory = new HashSet<>();
 
-        this.firstName = k.getFirstName();
-        this.lastName = k.getLastName();
-        this.Email = k.getEmail();
-        this.password = k.getPassword();
-    }
-    public account(int type, String firstName, String lastName, String Email, String password) {
+    public account(int type, String firstName, String lastName, String Email, String password){
+        // com.HR.HRApp.repositories.managerRepository managerRepository, com.HR.HRApp.repositories.customerRepository customerRepository) {
         this.type = type;
         this.firstName = firstName;
         this.lastName = lastName;
         this.Email = Email;
         this.password = password;
     }
+
+    public account() {
+
+    }
+
     public long getId() {
-        return id;
+        return account_id;
     }
     public void setId(long id) {
-        this.id = id;
+        this.account_id = id;
     }
     public int getType() {
         return type;
