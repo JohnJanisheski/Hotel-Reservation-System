@@ -57,6 +57,22 @@ public class bootStrapData implements CommandLineRunner {
         roomTypeRepository.save(rt1);
         roomRepository.save(r1);
 
+
+        //In Progress-----------------------------------------------------------------------------
+        //This section is going to add the main partner group into the database as managers
+        account acc = new account(2, "John", "Janisheski", "johnjanisheski99@gmail.com", "Admin");
+        accountRepository.save(acc);
+        acc = new account(2, "Xinyi", "Peng", "theapxy@gmail.com", "Admin");
+        accountRepository.save(acc);
+        acc = new account(2, "Sarah", "Derr", "", "Admin");
+        accountRepository.save(acc);
+        acc = new account(2, "Xinyi", "Peng", "theapxy@gmail.com", "Admin");
+        accountRepository.save(acc);
+
+//        managers = new account();
+        //In Progress-----------------------------------------------------------------------------
+
+
         System.out.println("Opened in BootStrap");
         System.out.println("Number of accounts = " + accountRepository.count());
         System.out.println("Number of accounts = " + roomRepository.count());
