@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class staffController {
     //display list of staff
 
-    private staffRepository staffRepository;
+    private final staffRepository staffRepository;
     @Autowired
     private staffService staffService;
 
@@ -42,7 +42,7 @@ public class staffController {
     public String saveStaff(@ModelAttribute("staff") staff staff){
         // save staff to db
         staffService.saveStaff(staff);
-        return "redirect:/";
+        return "redirect:/staff";
     }
 
 
