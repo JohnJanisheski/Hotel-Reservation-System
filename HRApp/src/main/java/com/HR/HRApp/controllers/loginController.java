@@ -18,7 +18,7 @@ public class loginController {
     public String getLogin(Model model){
 
         model.addAttribute("Accounts", accountRepository.findAll());
-        return "accounts/list";
+        return "Yuhui/stafflist";
     }
 
     @RequestMapping("/Login")

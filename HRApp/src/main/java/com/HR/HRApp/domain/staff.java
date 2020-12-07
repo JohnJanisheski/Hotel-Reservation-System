@@ -3,7 +3,7 @@ package com.HR.HRApp.domain;
 import javax.persistence.*;
 
 @Entity
-
+@Table(name = "staff")
 public class staff{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -11,12 +11,15 @@ public class staff{
 
     //Every account will have a first and last name
 
+    @Column(name = "first_name")
     private String firstName;
 
+    @Column(name = "last_name")
     private String lastName;
 
-    //Every account will have a username and password
-    private String userName;
+    //Every account will have a Email and password
+    @Column(name = "email")
+    private String Email;
     private String password;
 
     public staff() {
@@ -25,14 +28,14 @@ public class staff{
         //this.type = k.getType();
         this.firstName = k.getFirstName();
         this.lastName = k.getLastName();
-        this.userName = k.getUserName();
+        this.Email = k.getEmail();
         this.password = k.getPassword();
     }
-    public staff(int type, String firstName, String lastName, String userName, String password) {
+    public staff(int type, String firstName, String lastName, String Email, String password) {
         //this.type = type;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
+        this.Email = Email;
         this.password = password;
     }
     public long getId() {
@@ -53,11 +56,11 @@ public class staff{
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public String getUserName() {
-        return userName;
+    public String getEmail() {
+        return Email;
     }
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setEmail(String Email) {
+        this.Email = Email;
     }
     public String getPassword() {
         return password;

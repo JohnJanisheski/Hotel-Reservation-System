@@ -11,9 +11,18 @@ import java.util.List;
 public class staffServiceImp extends staffService {
     @Autowired
     private com.HR.HRApp.repositories.staffRepository staffRepository;
+
     @Override
     public List<staff> getAllStaff(){
-        return staffRepository.findAll();
+        return (List<staff>) staffRepository.findAll();
 
     }
+
+    @Override
+    public void saveStaff(staff staff) {
+        this.staffRepository.save(staff);
+    }
+
+
+
 }
