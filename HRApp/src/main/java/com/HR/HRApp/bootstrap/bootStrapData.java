@@ -7,6 +7,7 @@ import com.HR.HRApp.domain.staff;
 import com.HR.HRApp.repositories.accountRepository;
 import com.HR.HRApp.repositories.roomRepository;
 import com.HR.HRApp.repositories.roomTypeRepository;
+import com.HR.HRApp.repositories.staffRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -16,13 +17,16 @@ public class bootStrapData implements CommandLineRunner {
     private final accountRepository accountRepository;
     private final roomRepository roomRepository;
     private final roomTypeRepository roomTypeRepository;
+    private final staffRepository staffRepository;
 
     public bootStrapData(com.HR.HRApp.repositories.accountRepository accountRepository
     ,roomTypeRepository roomTypeRepository
-    ,roomRepository roomRepository) {
+    ,roomRepository roomRepository
+    ,staffRepository staffRepository) {
         this.accountRepository = accountRepository;
         this.roomRepository = roomRepository;
         this.roomTypeRepository = roomTypeRepository;
+        this.staffRepository = staffRepository;
     }
 
 
@@ -44,6 +48,11 @@ public class bootStrapData implements CommandLineRunner {
         r1.setRoomType(rt1);
         rt1.getRooms().add(r1);
 
+        staff s1 = new staff();
+        s1.setEmail("123");
+        s1.setFirstName("123");
+        s1.setLastName("123");
+        staffRepository.save(s1);
 
         roomTypeRepository.save(rt1);
         roomRepository.save(r1);

@@ -1,0 +1,16 @@
+body{
+    font-family: cursive;height: 100%;width: 100%;
+}
+table{
+    width: 80%;font-size: large; 
+}
+#contain{
+    width:40%;font-size:x-large;margin-top: 10%;margin-left: 30%;
+    height: auto;
+    background-color:rgba(244, 246, 248, 0.5);
+  
+}
+h1{
+    margin-left: 100px;
+    margin-top: 100px;
+}

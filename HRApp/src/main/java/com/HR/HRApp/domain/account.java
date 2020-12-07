@@ -24,24 +24,24 @@ public class account {
     private String firstName;
     private String lastName;
 
-    //Every account will have a username and password
-    private String userName;
+    //Every account will have a Email and password
+    private String Email;
     private String password;
 
     public account() {
     }
     public account(staff k){
-        this.type = k.getType();
+
         this.firstName = k.getFirstName();
         this.lastName = k.getLastName();
-        this.userName = k.getUserName();
+        this.Email = k.getEmail();
         this.password = k.getPassword();
     }
-    public account(int type, String firstName, String lastName, String userName, String password) {
+    public account(int type, String firstName, String lastName, String Email, String password) {
         this.type = type;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
+        this.Email = Email;
         this.password = password;
     }
     public long getId() {
@@ -68,11 +68,11 @@ public class account {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public String getUserName() {
-        return userName;
+    public String getEmail() {
+        return Email;
     }
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setEmail(String Email) {
+        this.Email = Email;
     }
     public String getPassword() {
         return password;

@@ -18,6 +18,6 @@ public class homeController {
     public String getAccounts(Model model){
 
         model.addAttribute("accounts", accountRepository.findAll());
-        return "accounts/accountList";
+        return "home";
     }
 }
