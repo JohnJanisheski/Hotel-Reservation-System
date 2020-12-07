@@ -8,16 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class homeController {
 
-    private final accountRepository accountRepository;
-
-    public homeController(accountRepository accountRepository) {
-        this.accountRepository = accountRepository;
-    }
-
     @RequestMapping("/home")
-    public String getAccounts(Model model){
-
-        model.addAttribute("accounts", accountRepository.findAll());
-        return "home";
+    public String getHome(Model model) {
+        return "resources/templates/Yuhui/home.html";
     }
 }
