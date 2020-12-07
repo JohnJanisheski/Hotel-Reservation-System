@@ -3,22 +3,18 @@ package com.HR.HRApp.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "staff")
 public class staff{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     //Every account will have a first and last name
 
-    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "last_name")
     private String lastName;
 
     //Every account will have a Email and password
-    @Column(name = "email")
     private String Email;
     private String password;
 
