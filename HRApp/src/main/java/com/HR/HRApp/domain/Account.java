@@ -18,7 +18,7 @@ import java.util.Set;
 //The User class is meant to be the basis of all of the users
 //This will be extended by customer, manager and Staff.
 @Entity
-public class account {
+public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,7 +48,7 @@ public class account {
     @JoinColumn(name = "reservation_id")
     private Set<reservation> orderHistory = new HashSet<>();
 
-    public account(int type, String firstName, String lastName, String Email, String password){
+    public Account(int type, String firstName, String lastName, String Email, String password){
         // com.HR.HRApp.repositories.managerRepository managerRepository, com.HR.HRApp.repositories.customerRepository customerRepository) {
         this.type = type;
         this.firstName = firstName;
@@ -57,7 +57,7 @@ public class account {
         this.password = password;
     }
 
-    public account() {
+    public Account() {
 
     }
 

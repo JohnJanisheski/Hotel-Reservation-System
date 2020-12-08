@@ -1,10 +1,14 @@
 package com.HR.HRApp.repositories;
 
-import com.HR.HRApp.domain.account;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.HR.HRApp.domain.Account;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public interface accountRepository extends CrudRepository<account, Long> {
+public interface accountRepository extends CrudRepository<Account, Long> {
+    @Query("FROM Account where Email = ?1")
+    List<Account> findByEmail(String email);
 }
