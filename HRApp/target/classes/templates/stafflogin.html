@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html style="height: 100%;width:100% ;" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<title>person</title>
+<link type="text/css" rel="stylesheet" href="../../css/login.css" />
+<link type="text/css" rel="stylesheet" href="../../css/bootstrap.min.css" />
+<style type="text/css">
+body{
+    width:100% ;background-image: url(../../images/1.jpg);height:auto; overflow: hidden;background-repeat: no-repeat;background-size: 100% 100%;
+}
+.form-control{
+    width: 300px;
+}
+</style>
+</head>
+<body>
+ 
+<div id="contain">
+ 
+    <br>
+<h1 style="font-weight: bold;font-family: cursive;margin-left: 150px;">Royal Hotel</h1>
+
+<br>
+<form class="form-horizontal" role="form">
+	<div class="form-group" style="margin-left: 80px;">
+		<label for="firstname" class="col-sm-2 control-label">Staff Email:</label>
+		<div class="col-sm-10">
+			<input type="email" class="form-control" id="firstname" 
+				   placeholder="please input your email">
+		</div>
+	</div><br>
+	<div class="form-group">
+		<label for="lastname" class="col-sm-2 control-label" style="margin-left: 48px;">Password:</label>
+		<div class="col-sm-5">
+			<input type="password" class="form-control" id="lastname" style="margin-left: 30px;"
+				   placeholder="please input your password">
+		</div>
+	</div><br>
+	<form action="/action_page.php">
+		<input type="checkbox" id="manager" name="staffType1" value="Manager">
+		<label for="manager"> Manager</label><br>
+	</form>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-5">
+			<button type="submit" class="btn btn-default"style="margin-left: 80px;"><a href="stafflist.html">Sign In</a></button>
+		</div>
+	</div>
+</form>
+</div>
+ 
+</body>
+</html>
