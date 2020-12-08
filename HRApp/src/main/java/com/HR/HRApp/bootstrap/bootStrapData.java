@@ -1,6 +1,6 @@
 package com.HR.HRApp.bootstrap;
 
-import com.HR.HRApp.domain.account;
+import com.HR.HRApp.domain.Account;
 //import com.HR.HRApp.domain.manager;
 //import com.HR.HRApp.domain.customer;
 //import com.HR.HRApp.repositories.customerRepository;
@@ -43,17 +43,17 @@ public class bootStrapData implements CommandLineRunner {
         rt1.getRooms().add(r1);
 
         //Admin Accounts and Non Admin Accounts
-        account acc = new account(2, "John", "Janisheski", "johnjanisheski99@gmail.com", "AdminPassword");
+        Account acc = new Account(2, "John", "Janisheski", "johnjanisheski99@gmail.com", "AdminPassword");
         accountRepository.save(acc);
-        acc = new account(2, "Xinyi", "Peng", "theapxy@gmail.com", "AdminPassword");
+        acc = new Account(2, "Xinyi", "Peng", "theapxy@gmail.com", "AdminPassword");
         accountRepository.save(acc);
-        acc = new account(2, "Sarah", "Derr", "test@gmail.com", "AdminPassword");
+        acc = new Account(2, "Sarah", "Derr", "test@gmail.com", "AdminPassword");
         accountRepository.save(acc);
-        acc = new account(2, "Yuhui", "Last Name", "kkfiner@gmail.com", "AdminPassword");
+        acc = new Account(2, "Yuhui", "Last Name", "kkfiner@gmail.com", "AdminPassword");
         accountRepository.save(acc);
-        acc = new account(0, "John", "Doe", "JohnDoe@gmail.com", "CustomerPassword");
+        acc = new Account(0, "John", "Doe", "JohnDoe@gmail.com", "CustomerPassword");
         accountRepository.save(acc);
-        acc = new account(1, "John", "Doe", "JohnDoe@gmail.com", "StaffPassword");
+        acc = new Account(1, "John", "Doe", "JohnDoe@gmail.com", "StaffPassword");
         accountRepository.save(acc);
 
 
