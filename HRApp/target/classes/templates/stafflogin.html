@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html style="height: 100%;width:100% ;" xmlns:th="http://www.w3.org/1999/xhtml">
-<head> 
-<meta charset="utf-8"> 
-<title>person</title> 
+<head>
+<meta charset="utf-8">
+<title>person</title>
 <link type="text/css" rel="stylesheet" href="../../css/login.css" />
 <link type="text/css" rel="stylesheet" href="../../css/bootstrap.min.css" />
 <style type="text/css">
@@ -24,7 +24,7 @@ body{
 <br>
 <form class="form-horizontal" role="form">
 	<div class="form-group" style="margin-left: 80px;">
-		<label for="firstname" class="col-sm-2 control-label">Email:</label>
+		<label for="firstname" class="col-sm-2 control-label">Staff Email:</label>
 		<div class="col-sm-10">
 			<input type="email" class="form-control" id="firstname" 
 				   placeholder="please input your email">
@@ -36,13 +36,14 @@ body{
 			<input type="password" class="form-control" id="lastname" style="margin-left: 30px;"
 				   placeholder="please input your password">
 		</div>
-		<div class="col-sm-offset-2 col-sm-5">
 	</div><br>
+	<form action="/action_page.php">
+		<input type="checkbox" id="manager" name="staffType1" value="Manager">
+		<label for="manager"> Manager</label><br>
+	</form>
 	<div class="form-group">
-		<div class="col-sm-offset-0 col-sm-8">
-			<button type="submit" class="btn btn-default"style="margin-left: 80px;"><a href="index.html">Sign In</a></button>
-		<button class="btn btn-default" style="margin-left: 180px;margin-top: -70px;width: 120px;">
-			<a href="register" style="color: black;text-decoration: none;">Create Account</a></button>
+		<div class="col-sm-offset-2 col-sm-5">
+			<button type="submit" class="btn btn-default"style="margin-left: 80px;"><a href="stafflist.html">Sign In</a></button>
 		</div>
 	</div>
 </form>
