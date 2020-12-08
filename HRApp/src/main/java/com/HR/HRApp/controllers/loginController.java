@@ -10,6 +10,6 @@ public class loginController {
 
     @RequestMapping("/login")
     public String login() {
-        return "/login.html";
+        return "login";
     }
 }
