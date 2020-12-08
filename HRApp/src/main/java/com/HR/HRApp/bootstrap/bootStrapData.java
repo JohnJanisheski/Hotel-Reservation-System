@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class bootStrapData implements CommandLineRunner {
 
+    public boolean loggedIn = false;
     private final accountRepository accountRepository;
     private final roomRepository roomRepository;
     private final roomTypeRepository roomTypeRepository;
@@ -34,7 +35,6 @@ public class bootStrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-
 
         //room and roomtype
         room r1 =  new room();
@@ -61,6 +61,14 @@ public class bootStrapData implements CommandLineRunner {
         System.out.println("Number of accounts = " + accountRepository.count());
         System.out.println("Number of rooms = " + roomRepository.count());
         System.out.println("Number of room types = " + roomTypeRepository.count());
+    }
+
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
     }
 }
 

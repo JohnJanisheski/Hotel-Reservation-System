@@ -8,23 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class loginController {
 
-    private final accountRepository accountRepository;
-
-    public loginController(accountRepository accountRepository) {
-        this.accountRepository = accountRepository;
-    }
-
-    @RequestMapping("/")
-    public String getLogin(Model model){
-
-        model.addAttribute("Accounts", accountRepository.findAll());
-        return "Yuhui/stafflist";
-    }
-
-    @RequestMapping("/Login")
-    public String getOtherLogin(Model model){
-
-        model.addAttribute("Accounts", accountRepository.findAll());
-        return "accounts/list";
+    @RequestMapping("/login")
+    public String login() {
+        return "/login.html";
     }
 }
