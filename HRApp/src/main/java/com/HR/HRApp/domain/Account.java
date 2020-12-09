@@ -93,6 +93,7 @@ public class Account {
         return isLoggedin;
     }
 
+    //log in
     public void setLoggedin(Boolean loggedin) {
         isLoggedin = loggedin;
     }
