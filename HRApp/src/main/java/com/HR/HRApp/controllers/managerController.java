@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -24,7 +27,7 @@ public class managerController {
         //model.addAttribute("listEmployees", Employees);
         Account Employee = new Account();
         model.addAttribute("employee", Employee);
-        return "backend/managerHomePage";
+        return "managerHomePage";
     }
 
     @GetMapping("/showEmployeeList")
@@ -33,7 +36,7 @@ public class managerController {
         List<Account> Employees = accountService.getAllAccountByType(1);
         System.out.println(Employees.size());
         model.addAttribute("listEmployees", Employees);
-        return "backend/staffList";
+        return "staffList";
     }
 
     @GetMapping("/showNewEmployeeForm")
@@ -41,6 +44,21 @@ public class managerController {
         // create model attribute to bind form data
         Account employee = new Account();
         model.addAttribute("employee", employee);
-        return "backend/new_employee";
+        return "new_employee";
+    }
+
+    @PostMapping("/saveEmployee")
+    public String saveEmployee(@ModelAttribute("employee") Account employee) {
+        // save employee to database
+        accountService.saveEmployee(employee);
+        return "managerHomePage";
+    }
+
+    @GetMapping("/deleteEmployee/{id}")
+    public String deleteEmployee(@PathVariable(value = "id") long id) {
+
+        // call delete employee method
+        this.accountService.deleteAccountById(id);
+        return "redirect:/managerHomePage";
     }
 }

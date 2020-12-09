@@ -38,10 +38,10 @@ public class loginController {
                 return "index";
             // the user is a staff
             else if(loggedinAccount.getType() == 1)
-                return "backend/staffHomePage";
+                return "staffHomePage";
             // the user is a manager
             else if(loggedinAccount.getType() == 2)
-                return "backend/managerHomePage";
+                return "managerHomePage";
         }
         else
             try {
