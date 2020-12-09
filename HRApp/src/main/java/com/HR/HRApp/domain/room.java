@@ -15,19 +15,20 @@ public class room {
     private String image;//room image
     private int isLive;//1: empty room, 2: reserved, 3: moved in/occupied, 4: room is out of order, 5: checked out
     private int floor; //floor: 1, 2
-    private int isClean; //isCleaned?
+    private boolean isClean; //isCleaned?
 
     @ManyToOne
+    @JoinColumn(name="room_id", referencedColumnName = "room_id", insertable = false, updatable = false)
     private roomType roomType;//room category
 
-    @ManyToOne
-    private reservation reservation;//Link to reservations
+//    @ManyToOne
+//    private reservation reservation; //Link to reservations
 
 
     public room() {
     }
 
-    public room(String roomName, String remark, String image, com.HR.HRApp.domain.roomType roomType, int isLive, int floor, int isClean) {
+    public room(String roomName, String remark, String image, com.HR.HRApp.domain.roomType roomType, int isLive, int floor, boolean isClean) {
         this.roomName = roomName;
         this.remark = remark;
         this.image = image;
@@ -93,11 +94,11 @@ public class room {
         this.floor = floor;
     }
 
-    public int getIsClean() {
+    public boolean getIsClean() {
         return isClean;
     }
 
-    public void setIsClean(int isClean) {
+    public void setIsClean(boolean isClean) {
         this.isClean = isClean;
     }
 
