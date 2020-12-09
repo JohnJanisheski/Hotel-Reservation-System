@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @Controller
@@ -18,7 +19,7 @@ public class loginController {
     public String login_start(Model model) {
         Account account = new Account();
         model.addAttribute("account", account);
-        return "login";
+        return "login.html";
     }
 
     @PostMapping("/signInAction")
@@ -40,7 +41,7 @@ public class loginController {
                 return "backend/staffHomePage";
             // the user is a manager
             else if(loggedinAccount.getType() == 2)
-                return "backend/stafflist";
+                return "backend/managerHomePage";
         }
         else
             try {
