@@ -12,4 +12,7 @@ public class bookController {
     public String about() {
         return "index.html";
     }
+
+    @RequestMapping("/book")
+    public String book(){return "book.html";}
 }

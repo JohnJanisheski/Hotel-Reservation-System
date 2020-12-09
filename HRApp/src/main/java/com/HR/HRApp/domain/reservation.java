@@ -3,6 +3,14 @@ package com.HR.HRApp.domain;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import com.HR.HRApp.domain.Account;
+import com.HR.HRApp.domain.reservation;
+import com.HR.HRApp.domain.room;
+import com.HR.HRApp.domain.roomType;
+import com.HR.HRApp.repositories.accountRepository;
+import com.HR.HRApp.repositories.reservationRepository;
+import com.HR.HRApp.repositories.roomRepository;
+import com.HR.HRApp.repositories.roomTypeRepository;
 
 @Entity
 public class reservation {
@@ -19,7 +27,7 @@ public class reservation {
     private Set<room> reserved_rooms = new HashSet<>();
 
     @JoinColumn(name = "email")
-    private String res_email;
+    private String reservation_email;
 
     @ManyToOne
     private reservation reservation;//reservation Info
@@ -30,12 +38,13 @@ public class reservation {
     public reservation(String reservedStartDate, String reservedEndDate, String email) {
         this.reservedStartDate = reservedStartDate;
         this.reservedEndDate = reservedEndDate;
-        this.res_email = email;
+        this.reservation_email = email;
     }
 
     public void addRoomToReservation(room room){
         this.reserved_rooms.add(room);
     }
+
     public Long getReservation_id() {
         return reservation_id;
     }
@@ -64,7 +73,23 @@ public class reservation {
         return reserved_rooms;
     }
 
-    public void setReserved_rooms(room room) {
-        this.reserved_rooms.add(room);
+    public void setReserved_rooms(Set<room> reserved_rooms) {
+        this.reserved_rooms = reserved_rooms;
+    }
+
+    public String getReservationEmail() {
+        return reservation_email;
+    }
+
+    public void setReservation_email(String email) {
+        this.reservation_email = email;
+    }
+
+    public com.HR.HRApp.domain.reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(com.HR.HRApp.domain.reservation reservation) {
+        this.reservation = reservation;
     }
 }
