@@ -3,45 +3,53 @@ package com.HR.HRApp.domain;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import com.HR.HRApp.domain.Account;
-import com.HR.HRApp.domain.reservation;
-import com.HR.HRApp.domain.room;
-import com.HR.HRApp.domain.roomType;
-import com.HR.HRApp.repositories.accountRepository;
-import com.HR.HRApp.repositories.reservationRepository;
-import com.HR.HRApp.repositories.roomRepository;
-import com.HR.HRApp.repositories.roomTypeRepository;
 
 @Entity
-public class reservation {
+public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    private Long reservation_id;
+    private long reservation_id;
 
     private String reservedStartDate;
     private String reservedEndDate;
 
     @OneToMany
     @JoinColumn(name = "room_id")
-    private Set<room> reserved_rooms = new HashSet<>();
+    private Set<Room> reserved_rooms = new HashSet<>();
 
     @JoinColumn(name = "email")
     private String reservation_email;
 
     @ManyToOne
-    private reservation reservation;//reservation Info
+    private Reservation reservation;//reservation Info
 
-    public reservation() {
-    }
+    private int roomNum;
 
-    public reservation(String reservedStartDate, String reservedEndDate, String email) {
+    private RoomType roomType;
+
+    public Reservation(String reservedStartDate, String reservedEndDate, String email) {
         this.reservedStartDate = reservedStartDate;
         this.reservedEndDate = reservedEndDate;
         this.reservation_email = email;
     }
 
-    public void addRoomToReservation(room room){
+    public Reservation(String reservedStartDate, String reservedEndDate, String email, int roomNum) {
+        this.reservedStartDate = reservedStartDate;
+        this.reservedEndDate = reservedEndDate;
+        this.reservation_email = email;
+        this.roomNum = roomNum;
+    }
+
+    public int getRoomNum() {
+        return roomNum;
+    }
+
+    public void setRoomNum(int roomNum) {
+        this.roomNum = roomNum;
+    }
+
+    public void addRoomToReservation(Room room){
         this.reserved_rooms.add(room);
     }
 
@@ -69,11 +77,11 @@ public class reservation {
         this.reservedEndDate = reservedEndDate;
     }
 
-    public Set<room> getReserved_rooms() {
+    public Set<Room> getReserved_rooms() {
         return reserved_rooms;
     }
 
-    public void setReserved_rooms(Set<room> reserved_rooms) {
+    public void setReserved_rooms(Set<Room> reserved_rooms) {
         this.reserved_rooms = reserved_rooms;
     }
 
@@ -85,11 +93,21 @@ public class reservation {
         this.reservation_email = email;
     }
 
-    public com.HR.HRApp.domain.reservation getReservation() {
+    public Reservation getReservation() {
         return reservation;
     }
 
-    public void setReservation(com.HR.HRApp.domain.reservation reservation) {
+    public void setReservation(Reservation reservation) {
         this.reservation = reservation;
+    }
+
+    public String getRoomNames()
+    {
+        String res = "";
+        for ( Room room : getReserved_rooms()
+             ) {
+            res+=room.getRoomName()+"\n";
+        }
+        return res;
     }
 }

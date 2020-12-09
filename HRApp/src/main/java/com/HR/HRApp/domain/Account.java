@@ -38,7 +38,7 @@ public class Account {
 
     @OneToMany
     @JoinColumn(name = "reservation")
-    private Set<reservation> orderHistory = new HashSet<>();
+    private Set<Reservation> orderHistory = new HashSet<>();
 
     public Account(int type, String firstName, String lastName, String Email, String password){
         this.type = type;

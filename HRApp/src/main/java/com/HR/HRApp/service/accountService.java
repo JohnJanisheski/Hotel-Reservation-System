@@ -1,10 +1,12 @@
 package com.HR.HRApp.service;
 
 import com.HR.HRApp.domain.Account;
+import org.springframework.stereotype.Service;
 
 
 import java.util.List;
 
+@Service
 public interface accountService{
     //account save(accountRegisterDto registerDto);
     List<Account> getAllAccountByType(int type);

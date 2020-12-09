@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class roomType {
+public class RoomType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "room_id")
@@ -24,12 +24,12 @@ public class roomType {
 
     @OneToMany
     @JoinColumn(name = "room_id")
-    private Set<room> rooms = new HashSet<>();
+    private Set<Room> rooms = new HashSet<>();
 
-    public roomType() {
+    public RoomType() {
     }
 
-    public roomType(String roomTypeName
+    public RoomType(String roomTypeName
             , String image
             , double price
             , int type
@@ -43,11 +43,11 @@ public class roomType {
         this.isAllowSmoking = isAllowSmoking;
     }
 
-    public Set<room> getRooms() {
+    public Set<Room> getRooms() {
         return this.rooms;
     }
 
-    public void addRoom(room rooms) {
+    public void addRoom(Room rooms) {
         this.rooms.add(rooms);
         this.num = this.num + 1;
     }

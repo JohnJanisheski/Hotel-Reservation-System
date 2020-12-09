@@ -1,9 +1,9 @@
 package com.HR.HRApp.bootstrap;
 
 import com.HR.HRApp.domain.Account;
-import com.HR.HRApp.domain.reservation;
-import com.HR.HRApp.domain.room;
-import com.HR.HRApp.domain.roomType;
+import com.HR.HRApp.domain.Reservation;
+import com.HR.HRApp.domain.Room;
+import com.HR.HRApp.domain.RoomType;
 import com.HR.HRApp.repositories.accountRepository;
 import com.HR.HRApp.repositories.reservationRepository;
 import com.HR.HRApp.repositories.roomRepository;
@@ -39,29 +39,29 @@ public class bootStrapData implements CommandLineRunner {
     public void run(String... args) {
 
         //Adding Room Types
-        ArrayList<roomType> rt = new ArrayList<roomType>();
-        rt.add(new roomType("Single Smoking", "Image URL", 120.00, 1, true));
-        rt.add(new roomType("Single Non Smoking", "Image URL", 100.00, 1, false));
-        rt.add(new roomType("Double Smoking", "Image URL", 170.00, 2, true));
-        rt.add(new roomType("Double Non Smoking", "Image URL", 150, 2, false));
+        ArrayList<RoomType> rt = new ArrayList<RoomType>();
+        rt.add(new RoomType("Single Smoking", "Image URL", 120.00, 1, true));
+        rt.add(new RoomType("Single Non Smoking", "Image URL", 100.00, 1, false));
+        rt.add(new RoomType("Double Smoking", "Image URL", 170.00, 2, true));
+        rt.add(new RoomType("Double Non Smoking", "Image URL", 150, 2, false));
         roomTypeRepository.saveAll(rt);
 
         //Adding Rooms
-        ArrayList<room> r = new ArrayList<room>();
-        room room1 = new room();
-        r.add(new room("101", "Single Bed Room Non Smoking", "Image URL", rt.get(1), 1, 1,true, 1));
-        r.add(new room("102", "Single Bed Room Non Smoking", "Image URL", rt.get(1), 1, 1,true, 1));
-        r.add(new room("103", "Single Bed Room Non Smoking", "Image URL", rt.get(1), 1, 1,true, 1));
-        r.add(new room("104", "Single Bed Room Non Smoking", "Image URL", rt.get(1), 1, 1,true, 1));
-        r.add(new room("105", "Single Bed Room Smoking", "Image URL", rt.get(0), 1, 1,true, 1));
-        r.add(new room("106", "Single Bed Room Smoking", "Image URL", rt.get(0), 1, 1,true, 1));
-        r.add(new room("107", "Single Bed Room Smoking", "Image URL", rt.get(0), 1, 1,true, 1));
-        r.add(new room("108", "Single Bed Room Smoking", "Image URL", rt.get(0), 1, 1,true, 1));
-        r.add(new room("201", "Double Bed Room Non Smoking", "Image URL", rt.get(3), 1, 2,true, 2));
-        r.add(new room("202", "Double Bed Room Non Smoking", "Image URL", rt.get(3), 1, 2,true, 2));
-        r.add(new room("203", "Double Bed Room Smoking", "Image URL", rt.get(2), 1, 2,true, 2));
-        r.add(new room("204", "Double Bed Room  Smoking", "Image URL", rt.get(2), 1, 2,true, 2));
-        for (room room: r){
+        ArrayList<Room> r = new ArrayList<Room>();
+        Room room1 = new Room();
+        r.add(new Room("101", "Single Bed Room Non Smoking", "Image URL", rt.get(1), 1, 1,true, 1));
+        r.add(new Room("102", "Single Bed Room Non Smoking", "Image URL", rt.get(1), 1, 1,true, 1));
+        r.add(new Room("103", "Single Bed Room Non Smoking", "Image URL", rt.get(1), 1, 1,true, 1));
+        r.add(new Room("104", "Single Bed Room Non Smoking", "Image URL", rt.get(1), 1, 1,true, 1));
+        r.add(new Room("105", "Single Bed Room Smoking", "Image URL", rt.get(0), 1, 1,true, 1));
+        r.add(new Room("106", "Single Bed Room Smoking", "Image URL", rt.get(0), 1, 1,true, 1));
+        r.add(new Room("107", "Single Bed Room Smoking", "Image URL", rt.get(0), 1, 1,true, 1));
+        r.add(new Room("108", "Single Bed Room Smoking", "Image URL", rt.get(0), 1, 1,true, 1));
+        r.add(new Room("201", "Double Bed Room Non Smoking", "Image URL", rt.get(3), 1, 2,true, 2));
+        r.add(new Room("202", "Double Bed Room Non Smoking", "Image URL", rt.get(3), 1, 2,true, 2));
+        r.add(new Room("203", "Double Bed Room Smoking", "Image URL", rt.get(2), 1, 2,true, 2));
+        r.add(new Room("204", "Double Bed Room  Smoking", "Image URL", rt.get(2), 1, 2,true, 2));
+        for (Room room: r){
             roomRepository.save(room);
             //Add the room to the roomType
             if (room.getRemark().contains("Single")){
@@ -88,15 +88,18 @@ public class bootStrapData implements CommandLineRunner {
         acc.add(new Account(0, "John", "Doe", "JohnDoe@gmail.com", "CustomerPassword"));
         acc.add(new Account(1, "John", "Doe", "JohnDoe@gmail.com", "StaffPassword"));
         acc.add(new Account(0, "0", "0", "theapxy@gmail.com", "0"));
+        acc.add(new Account(1, "0", "0", "theapxy@gmail.com", "1"));
+        acc.add(new Account(2, "0", "0", "theapxy@gmail.com", "2"));
         accountRepository.saveAll(acc);
 
         //Create a Reservation
         //Dates are Month-Day-Year
-        reservation res1 = new reservation();
-        reservation res = new reservation("12-24-2020", "12-26-2020", acc.get(0).getEmail());
+        Reservation res1 = new Reservation("12-24-2020", "12-26-2020", acc.get(6).getEmail());
+        Reservation res = new Reservation("12-24-2020", "12-26-2020", acc.get(0).getEmail());
         res.addRoomToReservation(r.get(9));
         res.addRoomToReservation(r.get(11));
-        //reservationRepository.save(res);
+        reservationRepository.save(res);
+        reservationRepository.save(res1);
         //System.out.println(res.getReservation_id() + " : " + res.getReserved_rooms() + " : " + res.getReservedEndDate() + " : " + res.getReservedStartDate());
 
 

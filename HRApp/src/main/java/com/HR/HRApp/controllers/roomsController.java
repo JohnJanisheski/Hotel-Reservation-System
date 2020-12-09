@@ -1,6 +1,6 @@
 package com.HR.HRApp.controllers;
 
-import com.HR.HRApp.domain.room;
+import com.HR.HRApp.domain.Room;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ public class roomsController {
     @GetMapping("/showRooms")
     public String showNewEmployeeForm(Model model) {
         // create model attribute to bind form data
-        room room = new room();
+        Room room = new Room();
         model.addAttribute("room", room);
         return "roomShow";
     }

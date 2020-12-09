@@ -1,10 +1,9 @@
 package com.HR.HRApp.domain;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
-public class room {
+public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,16 +21,16 @@ public class room {
     private boolean isClean; //isCleaned?
 
     @ManyToOne
-    private roomType roomType;//room category
+    private RoomType roomType;//room category
 
     @ManyToOne
-    private reservation reservation;//reservation Info
+    private Reservation reservation;//reservation Info
 
 
-    public room() {
+    public Room() {
     }
 
-    public room(String roomName, String remark, String image, roomType roomType, int isLive, int floor, boolean isClean, int type) {
+    public Room(String roomName, String remark, String image, RoomType roomType, int isLive, int floor, boolean isClean, int type) {
         this.roomName = roomName;
         this.remark = remark;
         this.image = image;
@@ -58,11 +57,11 @@ public class room {
         isClean = clean;
     }
 
-    public com.HR.HRApp.domain.reservation getReservation() {
+    public Reservation getReservation() {
         return reservation;
     }
 
-    public void setReservation(com.HR.HRApp.domain.reservation reservation) {
+    public void setReservation(Reservation reservation) {
         this.reservation = reservation;
     }
 
@@ -98,11 +97,11 @@ public class room {
         this.image = image;
     }
 
-    public com.HR.HRApp.domain.roomType getRoomType() {
+    public RoomType getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(com.HR.HRApp.domain.roomType roomType) {
+    public void setRoomType(RoomType roomType) {
         this.roomType = roomType;
     }
 
