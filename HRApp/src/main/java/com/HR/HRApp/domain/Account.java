@@ -2,17 +2,8 @@ package com.HR.HRApp.domain;
 
 import javax.persistence.*;
 
-import com.HR.HRApp.repositories.*;
-//import com.HR.HRApp.domain.manager;
-//import com.HR.HRApp.domain.customer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.stereotype.Component;
-import org.thymeleaf.context.IContext;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 //The User class is meant to be the basis of all of the users

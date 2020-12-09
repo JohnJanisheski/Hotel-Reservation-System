@@ -25,12 +25,14 @@ public class reservation {
     public reservation() {
     }
 
-    public reservation(String reservedStartDate, String reservedEndDate, Set<room> reserved_rooms) {
+    public reservation(String reservedStartDate, String reservedEndDate) {
         this.reservedStartDate = reservedStartDate;
         this.reservedEndDate = reservedEndDate;
-        this.reserved_rooms = reserved_rooms;
     }
 
+    public void addRoomToReservation(room room){
+        this.reserved_rooms.add(room);
+    }
     public Long getReservation_id() {
         return reservation_id;
     }

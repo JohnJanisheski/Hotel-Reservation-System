@@ -1,10 +1,6 @@
 package com.HR.HRApp.bootstrap;
 
 import com.HR.HRApp.domain.Account;
-//import com.HR.HRApp.domain.manager;
-//import com.HR.HRApp.domain.customer;
-//import com.HR.HRApp.repositories.customerRepository;
-//import com.HR.HRApp.repositories.managerRepository;
 import com.HR.HRApp.domain.reservation;
 import com.HR.HRApp.domain.room;
 import com.HR.HRApp.domain.roomType;
@@ -54,6 +50,7 @@ public class bootStrapData implements CommandLineRunner {
 
         //Adding Rooms
         ArrayList<room> r = new ArrayList<room>();
+        room room1 = new room();
         r.add(new room("101", "Single Bed Room Non Smoking", "Image URL", rt.get(1), 1, 1,true, 1));
         r.add(new room("102", "Single Bed Room Non Smoking", "Image URL", rt.get(1), 1, 1,true, 1));
         r.add(new room("103", "Single Bed Room Non Smoking", "Image URL", rt.get(1), 1, 1,true, 1));
@@ -100,7 +97,8 @@ public class bootStrapData implements CommandLineRunner {
         Set<room> resRooms = new HashSet<>();
         resRooms.add(r.get(9));
         resRooms.add(r.get(11));
-        reservation res = new reservation("12-24-2020", "12-26-2020", resRooms);
+        reservation res1 = new reservation();
+        reservation res = new reservation("12-24-2020", "12-26-2020");
 //        reservationRepository.save(res);
 
         List<Account> Employee = accountRepository.findAccountByType(1);
