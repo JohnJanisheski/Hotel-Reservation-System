@@ -17,7 +17,7 @@ public class registerController {
     public String register_start(Model model) {
         Account account = new Account();
         model.addAttribute("account", account);
-        return "register";
+        return "register.html";
     }
 
     @PostMapping("/saveAccount")
