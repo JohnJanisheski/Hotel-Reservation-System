@@ -14,15 +14,26 @@ public class accountServiceImpl implements accountService{
     @Autowired
     private accountRepository accountRepository;
 
-
     @Override
-    public List<Account> getAllAccountByType(Account account) {
-        return (List<Account>) accountRepository.findAll();
+    public List<Account> getAllAccountByType(int type) {
+        return accountRepository.findAccountByType(type);
     }
 
     @Override
     public void saveAccount(Account account) {
         this.accountRepository.save(account);
+    }
+
+    @Override
+    public void saveEmployee(Account employee) {
+        employee.setType(1);
+        this.accountRepository.save(employee);
+    }
+
+    @Override
+    public void saveManager(Account manager) {
+        manager.setType(2);
+        this.accountRepository.save(manager);
     }
 
     @Override

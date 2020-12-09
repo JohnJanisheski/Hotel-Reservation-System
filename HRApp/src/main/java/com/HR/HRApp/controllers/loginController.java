@@ -1,14 +1,12 @@
 package com.HR.HRApp.controllers;
 
 import com.HR.HRApp.domain.Account;
-import com.HR.HRApp.repositories.accountRepository;
 import com.HR.HRApp.service.accountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.channels.AcceptPendingException;
 import java.util.List;
 
 @Controller
@@ -43,7 +41,7 @@ public class loginController {
                 return "backend/staffHomePage";
             // the user is a manager
             else if(loggedinAccount.getType() == 2)
-                return "backend/stafflist";
+                return "backend/managerHomePage";
         }
         else
             try {

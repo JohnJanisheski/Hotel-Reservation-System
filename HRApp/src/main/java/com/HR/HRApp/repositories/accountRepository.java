@@ -14,4 +14,7 @@ public interface accountRepository extends CrudRepository<Account, Long> {
 
     @Query("FROM Account where Email = ?1 and password =?2")
     List<Account> findAccountByEmailAndPassword(String email, String password);
+
+    @Query("FROM Account where type =?1 ")
+    List<Account> findAccountByType(int type);
 }
