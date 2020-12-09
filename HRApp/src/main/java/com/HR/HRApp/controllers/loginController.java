@@ -59,7 +59,7 @@ public class loginController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        return "redirect:/login";
+        return "redirect:/login_start";
     }
 
     @GetMapping("/logout")

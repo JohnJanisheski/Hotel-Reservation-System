@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html style="height: 100%;width:100% ;" lang="en" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:margin-left="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<title>log in</title>
+	<link type="text/css" rel="stylesheet" href="../../css/login.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/../css/vendor.css" />
+	<link rel="stylesheet" href="/../css/LineIcons.min.css" />
+	<link href="/../css/tam.css" rel="stylesheet">
+	<style type="text/css">
+		body{
+			width:100% ;background-image: url(../../images/1.jpg);height:auto; overflow: hidden;background-repeat: no-repeat;background-size: 100% 100%;
+		}
+		.form-control{
+			width: 300px;
+		}
+		.nav-wrapper{
+
+		}
+	</style>
+</head>
+<body data-spy="scroll" data-target=".navbar">
+<aside class="aside">
+<div class="nav-wrapper">
+
+	<nav class="navbar text-center align-items-center justify-content-center">
+		<div class="collapse navbar-collapse show" id="navbarCollapse">
+			<div class="about-avatar mb-5">
+				<div class="about-avatar-details mt-4">
+					<h1>Royal Hotel</h1>
+				</div>
+
+			</div>
+			<ul class="navbar-nav mx-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="home"><i class="lni-home"></i>Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="about"><i class="lni-phone-handset"></i>About us</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="index"><i class="lni-briefcase"></i>Booking</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="/login_start"><i class="lni-pencil"></i></i>Sign in</a>
+				</li>
+
+			</ul>
+		</div>
+	</nav>
+</div>
+</aside>
+<div id="contain">
+
+	<br>
+	<h1 style="font-weight: bold;font-family: cursive;margin-left: 150px;">Royal Hotel</h1>
+	<br>
+
+	<form class="form-horizontal" action="#" th:action="@{/signInAction}" th:object="${account}" method="POST">
+		<div class="form-group" style="margin-left: 80px; margin-bottom: 30px">
+			<label for="email" class="col-sm-2 control-label">Email:</label>
+			<div class="col-sm-10">
+				<input type="email" class="form-control" id="email" th:field="*{email}"
+					   placeholder="please input your email">
+			</div>
+		</div>
+		<div class="form-group" style="margin-left: 55px;">
+			<label for="password" class="col-sm-2 control-label" style="margin-right: 20px">Password:</label>
+			<div class="col-sm-5">
+				<input type="password" class="form-control" id="password" th:field="*{password}"
+					   placeholder="please input your password">
+			</div>
+			<div class="col-sm-offset-2 col-sm-5">
+			</div>
+
+		</div>
+		<div class="form-group" style="margin-left: 135px;">
+			<div class="col-sm-offset-0 col-sm-8">
+				<button type="submit" class="btn btn-default"style="margin-left: -40px; margin-top: 30px">Sign In</button>
+				<button class="btn btn-default" style="margin-left: 140px;margin-top: -90px;">
+					<a href="register_start" style="color: white;text-decoration: none;">Create Account</a></button>
+			</div>
+		</div>
+	</form>
+</div>
+
+</body>
+</html>
