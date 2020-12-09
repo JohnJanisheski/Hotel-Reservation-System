@@ -43,6 +43,8 @@ public class Account {
     @Column(name = "password")
     private String password;
 
+    private Boolean isLoggedin;
+
     @Column(name = "order_History")
     @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "reservation_id")
@@ -55,6 +57,7 @@ public class Account {
         this.lastName = lastName;
         this.Email = Email;
         this.password = password;
+        this.isLoggedin = false;
     }
 
     public Account() {
@@ -94,6 +97,15 @@ public class Account {
     public String getPassword() {
         return password;
     }
+
+    public Boolean getLoggedin() {
+        return isLoggedin;
+    }
+
+    public void setLoggedin(Boolean loggedin) {
+        isLoggedin = loggedin;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
