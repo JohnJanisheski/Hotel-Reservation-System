@@ -1,0 +1,24 @@
+<changelist name="Uncommitted_changes_before_Update_at_12_8_20,_1_35_PM_[Default_Changelist]" date="1607452585470" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_8_20,_1_35_PM_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 12/8/20, 1:35 PM [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="HRApp/target/classes/com/HR/HRApp/controllers/loginController.class" />
+    <option name="AFTER_PATH" value="HRApp/target/classes/com/HR/HRApp/controllers/loginController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_8_20,_1_35_PM_[Default_Changelist]/loginController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="HRApp/target/classes/com/HR/HRApp/domain/roomType.class" />
+    <option name="AFTER_PATH" value="HRApp/target/classes/com/HR/HRApp/domain/roomType.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_8_20,_1_35_PM_[Default_Changelist]/roomType.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="HRApp/target/classes/com/HR/HRApp/domain/room.class" />
+    <option name="AFTER_PATH" value="HRApp/target/classes/com/HR/HRApp/domain/room.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_8_20,_1_35_PM_[Default_Changelist]/room.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="HRApp/target/classes/com/HR/HRApp/bootstrap/bootStrapData.class" />
+    <option name="AFTER_PATH" value="HRApp/target/classes/com/HR/HRApp/bootstrap/bootStrapData.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_8_20,_1_35_PM_[Default_Changelist]/bootStrapData.class" />
+  </binary>
+</changelist>

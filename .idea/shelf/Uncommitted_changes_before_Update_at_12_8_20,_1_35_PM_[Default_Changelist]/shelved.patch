@@ -1,0 +1,438 @@
+Index: HRApp/src/main/java/com/HR/HRApp/domain/room.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.HR.HRApp.domain;\n\nimport javax.persistence.*;\nimport java.util.Objects;\n\n@Entity\npublic class room {\n\n    @Id\n    @GeneratedValue(strategy = GenerationType.AUTO)\n    private long id;\n\n    private String roomName;//room number\n    private String remark;//room description\n    private String image;//room image\n    private int isLive;//1: empty room, 2: reserved, 3: moved in/occupied, 4: room is out of order, 5: checked out\n    private int floor; //floor: 1, 2\n    private int isClean; //isCleaned?\n\n    @ManyToOne\n    private roomType roomType;//room category\n\n    @ManyToOne\n    private reservation reservation;//Link to reservations\n\n\n    public room() {\n    }\n\n    public room(String roomName, String remark, String image, com.HR.HRApp.domain.roomType roomType, int isLive, int floor, int isClean) {\n        this.roomName = roomName;\n        this.remark = remark;\n        this.image = image;\n        this.roomType = roomType;\n        this.isLive = isLive;\n        this.floor = floor;\n        this.isClean = isClean;\n    }\n\n    public long getId() {\n        return id;\n    }\n\n    public void setId(long id) {\n        this.id = id;\n    }\n\n    public String getRoomName() {\n        return roomName;\n    }\n\n    public void setRoomName(String roomName) {\n        this.roomName = roomName;\n    }\n\n    public String getRemark() {\n        return remark;\n    }\n\n    public void setRemark(String remark) {\n        this.remark = remark;\n    }\n\n    public String getImage() {\n        return image;\n    }\n\n    public void setImage(String image) {\n        this.image = image;\n    }\n\n    public com.HR.HRApp.domain.roomType getRoomType() {\n        return roomType;\n    }\n\n    public void setRoomType(com.HR.HRApp.domain.roomType roomType) {\n        this.roomType = roomType;\n    }\n\n    public int getIsLive() {\n        return isLive;\n    }\n\n    public void setIsLive(int isLive) {\n        this.isLive = isLive;\n    }\n\n    public int getFloor() {\n        return floor;\n    }\n\n    public void setFloor(int floor) {\n        this.floor = floor;\n    }\n\n    public int getIsClean() {\n        return isClean;\n    }\n\n    public void setIsClean(int isClean) {\n        this.isClean = isClean;\n    }\n\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- HRApp/src/main/java/com/HR/HRApp/domain/room.java	(revision cbf638f7a1a32db2cad591fe5613760f1ba92dc8)
++++ HRApp/src/main/java/com/HR/HRApp/domain/room.java	(date 1607419910645)
+@@ -18,10 +18,11 @@
+     private int isClean; //isCleaned?
+ 
+     @ManyToOne
++    @JoinColumn(name="room_id", referencedColumnName = "room_id", insertable = false, updatable = false)
+     private roomType roomType;//room category
+ 
+-    @ManyToOne
+-    private reservation reservation;//Link to reservations
++//    @ManyToOne
++//    private reservation reservation; //Link to reservations
+ 
+ 
+     public room() {
+Index: HRApp/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n\txsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\n\n\t<modelVersion>4.0.0</modelVersion>\n\t<parent>\n\t\t<groupId>org.springframework.boot</groupId>\n\t\t<artifactId>spring-boot-starter-parent</artifactId>\n\t\t<version>2.3.4.RELEASE</version>\n\t\t<relativePath/> <!-- lookup parent from repository -->\n\t</parent>\n\t<groupId>com.HR</groupId>\n\t<artifactId>HRApp</artifactId>\n\t<version>0.0.1-SNAPSHOT</version>\n\t<name>HRApp</name>\n\t<description>Hotel Reservation System</description>\n\n\t<properties>\n\t\t<java.version>11</java.version>\n\t\t<beans:beans xmlns:beans=\"http://www.springframework.org/schema/beans\"\n\t\t\t\t\t xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n\t\t\t\t\t xmlns=\"http://www.springframework.org/schema/data/jpa\"\n\t\t\t\t\t xsi:schemaLocation=\"http://www.springframework.org/schema/beans\n    \t\thttp://www.springframework.org/schema/beans/spring-beans.xsd\n    \t\thttp://www.springframework.org/schema/data/jpa\n    \t\thttp://www.springframework.org/schema/data/jpa/spring-jpa.xsd\">\n\t\t\t<repositories base-package=\"com.HR.HRApp.repositories\" />\n\t\t</beans:beans>\n\t</properties>\n\n\t<dependencies>\n\t\t<dependency>\n\t\t\t<groupId>org.springframework.boot</groupId>\n\t\t\t<artifactId>spring-boot-starter-data-jpa</artifactId>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>org.springframework.boot</groupId>\n\t\t\t<artifactId>spring-boot-starter-thymeleaf</artifactId>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>com.h2database</groupId>\n\t\t\t<artifactId>h2</artifactId>\n\t\t\t<scope>runtime</scope>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>org.springframework.boot</groupId>\n\t\t\t<artifactId>spring-boot-starter-test</artifactId>\n\t\t\t<scope>test</scope>\n\t\t\t<exclusions>\n\t\t\t\t<exclusion>\n\t\t\t\t\t<groupId>org.junit.vintage</groupId>\n\t\t\t\t\t<artifactId>junit-vintage-engine</artifactId>\n\t\t\t\t</exclusion>\n\t\t\t</exclusions>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>org.springframework.boot</groupId>\n\t\t\t<artifactId>spring-boot-starter-web</artifactId>\n\t\t</dependency>\n\t</dependencies>\n\n\t<build>\n\t\t<plugins>\n\t\t\t<plugin>\n\t\t\t\t<groupId>org.springframework.boot</groupId>\n\t\t\t\t<artifactId>spring-boot-maven-plugin</artifactId>\n\t\t\t</plugin>\n\t\t</plugins>\n\t</build>\n</project>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- HRApp/pom.xml	(revision cbf638f7a1a32db2cad591fe5613760f1ba92dc8)
++++ HRApp/pom.xml	(date 1607412145755)
+@@ -17,15 +17,6 @@
+ 
+ 	<properties>
+ 		<java.version>11</java.version>
+-		<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+-					 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+-					 xmlns="http://www.springframework.org/schema/data/jpa"
+-					 xsi:schemaLocation="http://www.springframework.org/schema/beans
+-    		http://www.springframework.org/schema/beans/spring-beans.xsd
+-    		http://www.springframework.org/schema/data/jpa
+-    		http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+-			<repositories base-package="com.HR.HRApp.repositories" />
+-		</beans:beans>
+ 	</properties>
+ 
+ 	<dependencies>
+Index: HRApp/src/main/java/com/HR/HRApp/domain/roomType.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.HR.HRApp.domain;\n\nimport javax.persistence.*;\nimport java.util.HashSet;\nimport java.util.Objects;\nimport java.util.Set;\n\n@Entity\npublic class roomType {\n    @Id\n    @GeneratedValue(strategy = GenerationType.AUTO)\n    private long id;\n\n    private String roomTypeName;// room type name\n    private String image;//image on the homepage/introduction page\n    private double price;//price\n    private int type;//1: single room, 2: double room\n    private int num;//the number of available rooms of this type\n\n    @OneToMany(cascade = {CascadeType.ALL})\n    @JoinColumn(name = \"room_type_id\")\n    private Set<room> rooms = new HashSet<>();\n    private boolean isAllowSmoking; //false: not allow. true: allow\n\n    public roomType() {\n    }\n\n    public roomType(String roomTypeName\n            , String image\n            , double price\n            , int type\n            , int num\n            , Set<room> rooms\n            , boolean isAllowSmoking)\n    {\n        this.roomTypeName = roomTypeName;\n        this.image = image;\n        this.price = price;\n        this.type = type;\n        this.num = num;\n        this.isAllowSmoking = isAllowSmoking;\n    }\n\n    public Set<room> getRooms() {\n        return rooms;\n    }\n\n    public void setRooms(Set<room> rooms) {\n        this.rooms = rooms;\n    }\n\n    public long getId() {\n        return id;\n    }\n\n    public void setId(long id) {\n        this.id = id;\n    }\n\n    public String getRoomTypeName() {\n        return roomTypeName;\n    }\n\n    public void setRoomTypeName(String roomTypeName) {\n        this.roomTypeName = roomTypeName;\n    }\n\n    public String getImage() {\n        return image;\n    }\n\n    public void setImage(String image) {\n        this.image = image;\n    }\n\n    public double getPrice() {\n        return price;\n    }\n\n    public void setPrice(double price) {\n        this.price = price;\n    }\n\n    public int getType() {\n        return type;\n    }\n\n    public void setType(int type) {\n        this.type = type;\n    }\n\n    public int getNum() {\n        return num;\n    }\n\n    public void setNum(int num) {\n        this.num = num;\n    }\n\n    public boolean isAllowSmoking() {\n        return isAllowSmoking;\n    }\n\n    public void setAllowSmoking(boolean allowSmoking) {\n        isAllowSmoking = allowSmoking;\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- HRApp/src/main/java/com/HR/HRApp/domain/roomType.java	(revision cbf638f7a1a32db2cad591fe5613760f1ba92dc8)
++++ HRApp/src/main/java/com/HR/HRApp/domain/roomType.java	(date 1607421016457)
+@@ -9,6 +9,7 @@
+ public class roomType {
+     @Id
+     @GeneratedValue(strategy = GenerationType.AUTO)
++    @Column(name = "room_id")
+     private long id;
+ 
+     private String roomTypeName;// room type name
+@@ -16,12 +17,12 @@
+     private double price;//price
+     private int type;//1: single room, 2: double room
+     private int num;//the number of available rooms of this type
+-
+-    @OneToMany(cascade = {CascadeType.ALL})
+-    @JoinColumn(name = "room_type_id")
+-    private Set<room> rooms = new HashSet<>();
+     private boolean isAllowSmoking; //false: not allow. true: allow
+ 
++
++    @OneToMany(targetEntity = room.class, mappedBy = "roomType", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
++    private Set<room> rooms = new HashSet<>();
++
+     public roomType() {
+     }
+ 
+@@ -30,23 +31,22 @@
+             , double price
+             , int type
+             , int num
+-            , Set<room> rooms
+             , boolean isAllowSmoking)
+     {
+         this.roomTypeName = roomTypeName;
+         this.image = image;
+         this.price = price;
+         this.type = type;
+-        this.num = num;
++//        this.num = num;
+         this.isAllowSmoking = isAllowSmoking;
+     }
+ 
+     public Set<room> getRooms() {
+-        return rooms;
++        return this.rooms;
+     }
+ 
+-    public void setRooms(Set<room> rooms) {
+-        this.rooms = rooms;
++    public void setRooms(room rooms) {
++        this.rooms.add(rooms);
+     }
+ 
+     public long getId() {
+Index: HRApp/src/main/java/com/HR/HRApp/bootstrap/bootStrapData.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.HR.HRApp.bootstrap;\n\nimport com.HR.HRApp.domain.account;\n//import com.HR.HRApp.domain.manager;\n//import com.HR.HRApp.domain.customer;\n//import com.HR.HRApp.repositories.customerRepository;\n//import com.HR.HRApp.repositories.managerRepository;\nimport com.HR.HRApp.domain.room;\nimport com.HR.HRApp.domain.roomType;\nimport com.HR.HRApp.repositories.accountRepository;\nimport com.HR.HRApp.repositories.roomRepository;\nimport com.HR.HRApp.repositories.roomTypeRepository;\nimport org.springframework.boot.CommandLineRunner;\nimport org.springframework.data.jpa.repository.config.EnableJpaRepositories;\nimport org.springframework.stereotype.Component;\n\n@EnableJpaRepositories(\"com.HR.HRApp.repositories\")\n@Component\npublic class bootStrapData implements CommandLineRunner {\n\n    public boolean loggedIn = false;\n    private final accountRepository accountRepository;\n    private final roomRepository roomRepository;\n    private final roomTypeRepository roomTypeRepository;\n\n    public bootStrapData(\n    accountRepository accountRepository\n    ,roomTypeRepository roomTypeRepository\n    ,roomRepository roomRepository) {\n        this.accountRepository = accountRepository;\n        this.roomRepository = roomRepository;\n        this.roomTypeRepository = roomTypeRepository;\n    }\n\n\n    @Override\n    public void run(String... args) {\n\n        //room and roomtype\n        room r1 =  new room();\n        roomType rt1 = new roomType();\n        r1.setRoomType(rt1);\n        rt1.getRooms().add(r1);\n\n        //Admin Accounts and Non Admin Accounts\n        account acc = new account(2, \"John\", \"Janisheski\", \"johnjanisheski99@gmail.com\", \"AdminPassword\");\n        accountRepository.save(acc);\n        acc = new account(2, \"Xinyi\", \"Peng\", \"theapxy@gmail.com\", \"AdminPassword\");\n        accountRepository.save(acc);\n        acc = new account(2, \"Sarah\", \"Derr\", \"test@gmail.com\", \"AdminPassword\");\n        accountRepository.save(acc);\n        acc = new account(2, \"Yuhui\", \"Last Name\", \"kkfiner@gmail.com\", \"AdminPassword\");\n        accountRepository.save(acc);\n        acc = new account(0, \"John\", \"Doe\", \"JohnDoe@gmail.com\", \"CustomerPassword\");\n        accountRepository.save(acc);\n        acc = new account(1, \"John\", \"Doe\", \"JohnDoe@gmail.com\", \"StaffPassword\");\n        accountRepository.save(acc);\n\n\n        System.out.println(\"Opened in BootStrap\");\n        System.out.println(\"Number of accounts = \" + accountRepository.count());\n        System.out.println(\"Number of rooms = \" + roomRepository.count());\n        System.out.println(\"Number of room types = \" + roomTypeRepository.count());\n    }\n\n    public boolean isLoggedIn() {\n        return loggedIn;\n    }\n\n    public void setLoggedIn(boolean loggedIn) {\n        this.loggedIn = loggedIn;\n    }\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- HRApp/src/main/java/com/HR/HRApp/bootstrap/bootStrapData.java	(revision cbf638f7a1a32db2cad591fe5613760f1ba92dc8)
++++ HRApp/src/main/java/com/HR/HRApp/bootstrap/bootStrapData.java	(date 1607420977158)
+@@ -1,10 +1,6 @@
+ package com.HR.HRApp.bootstrap;
+ 
+ import com.HR.HRApp.domain.account;
+-//import com.HR.HRApp.domain.manager;
+-//import com.HR.HRApp.domain.customer;
+-//import com.HR.HRApp.repositories.customerRepository;
+-//import com.HR.HRApp.repositories.managerRepository;
+ import com.HR.HRApp.domain.room;
+ import com.HR.HRApp.domain.roomType;
+ import com.HR.HRApp.repositories.accountRepository;
+@@ -14,11 +10,17 @@
+ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+ import org.springframework.stereotype.Component;
+ 
++import javax.persistence.CascadeType;
++import javax.persistence.JoinColumn;
++import javax.persistence.OneToMany;
++import java.util.HashSet;
++import java.util.Set;
++
+ @EnableJpaRepositories("com.HR.HRApp.repositories")
+ @Component
+ public class bootStrapData implements CommandLineRunner {
+ 
+-    public boolean loggedIn = false;
++    private boolean loggedIn = false;
+     private final accountRepository accountRepository;
+     private final roomRepository roomRepository;
+     private final roomTypeRepository roomTypeRepository;
+@@ -37,15 +39,23 @@
+     public void run(String... args) {
+ 
+         //room and roomtype
+-        room r1 =  new room();
+-        roomType rt1 = new roomType();
+-        r1.setRoomType(rt1);
+-        rt1.getRooms().add(r1);
++        roomType rt1 = new roomType("Single", "Image URL", 100.00, 1, 0, true);
++        room r1 =  new room("Single Room 1", "Test Remark", "Image URL", rt1, 1, 0, 1);
++        room r2 =  new room("Single Room 2", "Test Remark", "Image URL", rt1, 1, 0, 3);
++        room r3 =  new room("Single Room 3", "Test Remark", "Image URL", rt1, 1, 0, 2);
++        room r4 =  new room("Single Room 4", "Test Remark", "Image URL", rt1, 1, 2, 3);
++        room r5 =  new room("Single Room 5", "Test Remark", "Image URL", rt1, 1, 1, 2);
++        rt1.setRooms(r1);
++        rt1.setRooms(r2);
++        rt1.setRooms(r3);
++        rt1.setRooms(r4);
++        rt1.setRooms(r5);
++        roomTypeRepository.save(rt1);
++        roomRepository.save(r1);
++
+ 
+         //Admin Accounts and Non Admin Accounts
+-        account acc = new account(2, "John", "Janisheski", "johnjanisheski99@gmail.com", "AdminPassword");
+-        accountRepository.save(acc);
+-        acc = new account(2, "Xinyi", "Peng", "theapxy@gmail.com", "AdminPassword");
++        account acc = new account(2, "Xinyi", "Peng", "theapxy@gmail.com", "AdminPassword");
+         accountRepository.save(acc);
+         acc = new account(2, "Sarah", "Derr", "test@gmail.com", "AdminPassword");
+         accountRepository.save(acc);
+@@ -61,7 +71,10 @@
+         System.out.println("Number of accounts = " + accountRepository.count());
+         System.out.println("Number of rooms = " + roomRepository.count());
+         System.out.println("Number of room types = " + roomTypeRepository.count());
+-    }
++        roomTypeRepository.findAll().forEach(roomType -> {
++            System.out.println(roomType.getRooms());
++            });
++        }
+ 
+     public boolean isLoggedIn() {
+         return loggedIn;
+Index: HRApp/src/main/resources/templates/booking.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n\t<meta charset=\"UTF-8\">\r\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n\t<title>about us</title>\r\n\t<link rel=\"stylesheet\" href=\"../../css/vendor.css\" />\r\n\t<link rel=\"stylesheet\" href=\"../../css/LineIcons.min.css\" />\r\n\t<link href=\"../../css/tam.css\" rel=\"stylesheet\">\r\n<style rel=\"stylesheet\">\r\n.bo{\r\n\tbackground-color: rgb(145, 164, 223);\r\n\tborder-radius: 20px;\r\n\tborder: none;\r\n}\r\n</style>\r\n\r\n</head>\r\n\r\n<body data-spy=\"scroll\" data-target=\".navbar\">\r\n\t<aside class=\"aside\">\r\n\r\n\t\t<div class=\"nav-wrapper\">\r\n\r\n\t\t\t<nav class=\"navbar text-center align-items-center justify-content-center\">\r\n\r\n\r\n\r\n                <div class=\"collapse navbar-collapse show\" id=\"navbarCollapse\">\r\n                \t<div class=\"about-avatar mb-5\">\r\n\t\t\t\t\t\t<div class=\"about-avatar-details mt-4\">\r\n\t\t\t\t\t\t\t<h1>Royal Hotel</h1>\r\n\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t</div>\r\n                    <ul class=\"navbar-nav mx-auto\">\r\n                        <li class=\"nav-item active\">\r\n                            <a class=\"nav-link\" href=\"home.html\"><i class=\"lni-home\"></i>Home</a>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t<li class=\"nav-item\">\r\n                            <a class=\"nav-link\" href=\"about.html\"><i class=\"lni-phone-handset\"></i>About us</a>\r\n                        </li>\r\n                        <li class=\"nav-item\">\r\n                            <a class=\"nav-link\" href=\"login.html\"><i class=\"lni-briefcase\"></i>Booking</a>\r\n                        </li>\r\n                        <li class=\"nav-item\">\r\n                            <a class=\"nav-link\" href=\"login.html\"><i class=\"lni-pencil\"></i></i>Sign in</a>\r\n                        </li>\r\n               \r\n                    </ul>\r\n                </div>\r\n\t        </nav>\r\n        </div>\r\n        <!-- END: NAVBAR -->\r\n    </aside>\r\n\r\n\t<div class=\"page-wrapper\" style=\"width: 100%;\">\r\n\t\t<section class=\"section section-light section-contact\" id=\"contact\" style=\"width: 70%;background-color: rgba(0, 0, 0, 0);\">\r\n\t\t\t<div class=\"container\" style=\"width: 100%;\">\r\n\t\t\t\t<div class=\"section-head\">\r\n\t\t\t\t\t<nav class=\"navbar navbar-expand-sm\">\r\n\t\t\t\t\t\t<ul class=\"navbar-nav\">\r\n\t\t\t\t\t\t  <li class=\"nav-item\">\r\n\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"\" style=\"color: rgb(225, 225, 226);font-size: large;\">Sort:</a>\r\n\t\t\t\t\t\t\t</li>&nbsp;&nbsp;&nbsp;&nbsp;\r\n\t\t\t\t\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"\" style=\"color: rgb(225, 225, 226);font-size: large;\">room type</a>\r\n\t\t\t\t\t\t\t\t</li>&nbsp;&nbsp;&nbsp;&nbsp;\r\n\t\t\t\t\t\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"\" style=\"color: rgb(225, 225, 226);font-size: large;\">price</a>\r\n\t\t\t\t\t\t\t\t</li>&nbsp;&nbsp;&nbsp;&nbsp;\r\n\t\t\t\t\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"\" style=\"color:rgb(225, 225, 226);font-size: large;\">size</a>\r\n\t\t\t\t\t\t\t</li>&nbsp;&nbsp;&nbsp;&nbsp;\r\n\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t  </nav>\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t</div>\r\n\t\t\t\t\t <table style=\"background-color: rgba(247, 240, 240, 0.5);width: 100%;border-radius: 40px;height: 300px;\" cellspacing=\"10\">\r\n\t\t\t\t\t\t <tr>\r\n\t\t\t\t\t\t\t <td rowspan=\"2\"><img src=\"../../images/2.jpg\" style=\"width: 300px;height: 200px;margin-top: 50px;border-radius: 40px;margin-left: 20px;\" /></td>\r\n\t\t\t\t\t\t\t <td rowspan=\"2\"><p style=\"font-weight:bold;font-size:xx-large\">Double bed</p>\r\n\t\t\t\t\t\t\t\t450 ft2<br>\r\n\t\t\t\t\t\t\t\ttwo full sized beds<br>\r\n\t\t\t\t\t\t\t\tfree wifi<br>\r\n\t\t\t\t\t\t\t\tfull bath\r\n\t\t\t\t\t\t\t</td> \r\n\t\t\t\t\t\t\t <td><button class=\"bo\">$100 per night</button></td>\r\n\t\t\t\t\t\t </tr>\r\n\t\t\t\t\t\t <tr>\r\n\t\t\t\t\t\t\t <td><button class=\"bo\"><a href=\"book.html\">Book this room</a></button></td>\r\n\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t </table>\r\n\t\t\t\t\t</div>\r\n\t\t</section>\r\n\t</div>\r\n</body>\r\n</html>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- HRApp/src/main/resources/templates/booking.html	(revision cbf638f7a1a32db2cad591fe5613760f1ba92dc8)
++++ HRApp/src/main/resources/templates/booking.html	(date 1607418497358)
+@@ -1,12 +1,12 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+ <head>
+ 	<meta charset="UTF-8">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<title>about us</title>
+-	<link rel="stylesheet" href="../../css/vendor.css" />
+-	<link rel="stylesheet" href="../../css/LineIcons.min.css" />
+-	<link href="../../css/tam.css" rel="stylesheet">
++	<link rel="stylesheet" href="/../css/vendor.css" />
++	<link rel="stylesheet" href="/../css/LineIcons.min.css" />
++	<link href="/../css/tam.css" rel="stylesheet">
+ <style rel="stylesheet">
+ .bo{
+ 	background-color: rgb(145, 164, 223);
+@@ -76,15 +76,45 @@
+ 					  </nav>
+ 								
+ 				</div>
++				<a th:href = "@{/showRooms}" class="btn btn-primary btn-sm mb-3"> Add Employee </a>
++				<table border="1" class = "table table-striped table-responsive-md">
++					<thead>
++					<tr>
++						<th>
++							<a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
++								Employee First Name</a>
++						</th>
++						<th>
++							<a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
++								Employee Last Name</a>
++						</th>
++						<th>
++							<a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
++								Employee Email</a>
++						</th>
++						<th> Actions </th>
++					</tr>
++					</thead>
++					<tbody>
++					<tr th:each="employee : ${listEmployees}">
++						<td th:text="${employee.firstName}"></td>
++						<td th:text="${employee.lastName}"></td>
++						<td th:text="${employee.email}"></td>
++						<td> <a th:href="@{/showFormForUpdate/{id}(id=${employee.id})}" class="btn btn-primary">Update</a>
++							<a th:href="@{/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a>
++						</td>
++					</tr>
++					</tbody>
++				</table>
+ 					 <table style="background-color: rgba(247, 240, 240, 0.5);width: 100%;border-radius: 40px;height: 300px;" cellspacing="10">
+ 						 <tr>
+-							 <td rowspan="2"><img src="../../images/2.jpg" style="width: 300px;height: 200px;margin-top: 50px;border-radius: 40px;margin-left: 20px;" /></td>
++							 <td rowspan="2"><img src="/../images/2.jpg" style="width: 300px;height: 200px;margin-top: 50px;border-radius: 40px;margin-left: 20px;" /></td>
+ 							 <td rowspan="2"><p style="font-weight:bold;font-size:xx-large">Double bed</p>
+ 								450 ft2<br>
+ 								two full sized beds<br>
+ 								free wifi<br>
+ 								full bath
+-							</td> 
++							</td>
+ 							 <td><button class="bo">$100 per night</button></td>
+ 						 </tr>
+ 						 <tr>
+Index: HRApp/src/main/java/com/HR/HRApp/controllers/loginController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.HR.HRApp.controllers;\n\nimport com.HR.HRApp.repositories.accountRepository;\nimport org.springframework.stereotype.Controller;\nimport org.springframework.ui.Model;\nimport org.springframework.web.bind.annotation.RequestMapping;\n\n@Controller\npublic class loginController {\n\n    @RequestMapping(\"/login\")\n    public String login() {\n        return \"/login.html\";\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- HRApp/src/main/java/com/HR/HRApp/controllers/loginController.java	(revision cbf638f7a1a32db2cad591fe5613760f1ba92dc8)
++++ HRApp/src/main/java/com/HR/HRApp/controllers/loginController.java	(date 1607410748656)
+@@ -1,8 +1,6 @@
+ package com.HR.HRApp.controllers;
+ 
+-import com.HR.HRApp.repositories.accountRepository;
+ import org.springframework.stereotype.Controller;
+-import org.springframework.ui.Model;
+ import org.springframework.web.bind.annotation.RequestMapping;
+ 
+ @Controller
+@@ -12,4 +10,5 @@
+     public String login() {
+         return "/login.html";
+     }
+-}
+\ No newline at end of file
++}
++
+Index: HRApp/target/classes/templates/booking.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n\t<meta charset=\"UTF-8\">\r\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n\t<title>about us</title>\r\n\t<link rel=\"stylesheet\" href=\"../../css/vendor.css\" />\r\n\t<link rel=\"stylesheet\" href=\"../../css/LineIcons.min.css\" />\r\n\t<link href=\"../../css/tam.css\" rel=\"stylesheet\">\r\n<style rel=\"stylesheet\">\r\n.bo{\r\n\tbackground-color: rgb(145, 164, 223);\r\n\tborder-radius: 20px;\r\n\tborder: none;\r\n}\r\n</style>\r\n\r\n</head>\r\n\r\n<body data-spy=\"scroll\" data-target=\".navbar\">\r\n\t<aside class=\"aside\">\r\n\r\n\t\t<div class=\"nav-wrapper\">\r\n\r\n\t\t\t<nav class=\"navbar text-center align-items-center justify-content-center\">\r\n\r\n\r\n\r\n                <div class=\"collapse navbar-collapse show\" id=\"navbarCollapse\">\r\n                \t<div class=\"about-avatar mb-5\">\r\n\t\t\t\t\t\t<div class=\"about-avatar-details mt-4\">\r\n\t\t\t\t\t\t\t<h1>Royal Hotel</h1>\r\n\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t</div>\r\n                    <ul class=\"navbar-nav mx-auto\">\r\n                        <li class=\"nav-item active\">\r\n                            <a class=\"nav-link\" href=\"home.html\"><i class=\"lni-home\"></i>Home</a>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t<li class=\"nav-item\">\r\n                            <a class=\"nav-link\" href=\"about.html\"><i class=\"lni-phone-handset\"></i>About us</a>\r\n                        </li>\r\n                        <li class=\"nav-item\">\r\n                            <a class=\"nav-link\" href=\"login.html\"><i class=\"lni-briefcase\"></i>Booking</a>\r\n                        </li>\r\n                        <li class=\"nav-item\">\r\n                            <a class=\"nav-link\" href=\"login.html\"><i class=\"lni-pencil\"></i></i>Sign in</a>\r\n                        </li>\r\n               \r\n                    </ul>\r\n                </div>\r\n\t        </nav>\r\n        </div>\r\n        <!-- END: NAVBAR -->\r\n    </aside>\r\n\r\n\t<div class=\"page-wrapper\" style=\"width: 100%;\">\r\n\t\t<section class=\"section section-light section-contact\" id=\"contact\" style=\"width: 70%;background-color: rgba(0, 0, 0, 0);\">\r\n\t\t\t<div class=\"container\" style=\"width: 100%;\">\r\n\t\t\t\t<div class=\"section-head\">\r\n\t\t\t\t\t<nav class=\"navbar navbar-expand-sm\">\r\n\t\t\t\t\t\t<ul class=\"navbar-nav\">\r\n\t\t\t\t\t\t  <li class=\"nav-item\">\r\n\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"\" style=\"color: rgb(225, 225, 226);font-size: large;\">Sort:</a>\r\n\t\t\t\t\t\t\t</li>&nbsp;&nbsp;&nbsp;&nbsp;\r\n\t\t\t\t\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"\" style=\"color: rgb(225, 225, 226);font-size: large;\">room type</a>\r\n\t\t\t\t\t\t\t\t</li>&nbsp;&nbsp;&nbsp;&nbsp;\r\n\t\t\t\t\t\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"\" style=\"color: rgb(225, 225, 226);font-size: large;\">price</a>\r\n\t\t\t\t\t\t\t\t</li>&nbsp;&nbsp;&nbsp;&nbsp;\r\n\t\t\t\t\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"\" style=\"color:rgb(225, 225, 226);font-size: large;\">size</a>\r\n\t\t\t\t\t\t\t</li>&nbsp;&nbsp;&nbsp;&nbsp;\r\n\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t  </nav>\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t</div>\r\n\t\t\t\t\t <table style=\"background-color: rgba(247, 240, 240, 0.5);width: 100%;border-radius: 40px;height: 300px;\" cellspacing=\"10\">\r\n\t\t\t\t\t\t <tr>\r\n\t\t\t\t\t\t\t <td rowspan=\"2\"><img src=\"../../images/2.jpg\" style=\"width: 300px;height: 200px;margin-top: 50px;border-radius: 40px;margin-left: 20px;\" /></td>\r\n\t\t\t\t\t\t\t <td rowspan=\"2\"><p style=\"font-weight:bold;font-size:xx-large\">Double bed</p>\r\n\t\t\t\t\t\t\t\t450 ft2<br>\r\n\t\t\t\t\t\t\t\ttwo full sized beds<br>\r\n\t\t\t\t\t\t\t\tfree wifi<br>\r\n\t\t\t\t\t\t\t\tfull bath\r\n\t\t\t\t\t\t\t</td> \r\n\t\t\t\t\t\t\t <td><button class=\"bo\">$100 per night</button></td>\r\n\t\t\t\t\t\t </tr>\r\n\t\t\t\t\t\t <tr>\r\n\t\t\t\t\t\t\t <td><button class=\"bo\"><a href=\"book.html\">Book this room</a></button></td>\r\n\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t </table>\r\n\t\t\t\t\t</div>\r\n\t\t</section>\r\n\t</div>\r\n</body>\r\n</html>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- HRApp/target/classes/templates/booking.html	(revision cbf638f7a1a32db2cad591fe5613760f1ba92dc8)
++++ HRApp/target/classes/templates/booking.html	(date 1607418647140)
+@@ -1,12 +1,12 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+ <head>
+ 	<meta charset="UTF-8">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<title>about us</title>
+-	<link rel="stylesheet" href="../../css/vendor.css" />
+-	<link rel="stylesheet" href="../../css/LineIcons.min.css" />
+-	<link href="../../css/tam.css" rel="stylesheet">
++	<link rel="stylesheet" href="/../css/vendor.css" />
++	<link rel="stylesheet" href="/../css/LineIcons.min.css" />
++	<link href="/../css/tam.css" rel="stylesheet">
+ <style rel="stylesheet">
+ .bo{
+ 	background-color: rgb(145, 164, 223);
+@@ -76,15 +76,45 @@
+ 					  </nav>
+ 								
+ 				</div>
++				<a th:href = "@{/showRooms}" class="btn btn-primary btn-sm mb-3"> Add Employee </a>
++				<table border="1" class = "table table-striped table-responsive-md">
++					<thead>
++					<tr>
++						<th>
++							<a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
++								Employee First Name</a>
++						</th>
++						<th>
++							<a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
++								Employee Last Name</a>
++						</th>
++						<th>
++							<a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
++								Employee Email</a>
++						</th>
++						<th> Actions </th>
++					</tr>
++					</thead>
++					<tbody>
++					<tr th:each="employee : ${listEmployees}">
++						<td th:text="${employee.firstName}"></td>
++						<td th:text="${employee.lastName}"></td>
++						<td th:text="${employee.email}"></td>
++						<td> <a th:href="@{/showFormForUpdate/{id}(id=${employee.id})}" class="btn btn-primary">Update</a>
++							<a th:href="@{/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a>
++						</td>
++					</tr>
++					</tbody>
++				</table>
+ 					 <table style="background-color: rgba(247, 240, 240, 0.5);width: 100%;border-radius: 40px;height: 300px;" cellspacing="10">
+ 						 <tr>
+-							 <td rowspan="2"><img src="../../images/2.jpg" style="width: 300px;height: 200px;margin-top: 50px;border-radius: 40px;margin-left: 20px;" /></td>
++							 <td rowspan="2"><img src="/../images/2.jpg" style="width: 300px;height: 200px;margin-top: 50px;border-radius: 40px;margin-left: 20px;" /></td>
+ 							 <td rowspan="2"><p style="font-weight:bold;font-size:xx-large">Double bed</p>
+ 								450 ft2<br>
+ 								two full sized beds<br>
+ 								free wifi<br>
+ 								full bath
+-							</td> 
++							</td>
+ 							 <td><button class="bo">$100 per night</button></td>
+ 						 </tr>
+ 						 <tr>
+Index: HRApp/src/main/resources/templates/login.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html style=\"height: 100%;width:100% ;\" xmlns:th=\"http://www.w3.org/1999/xhtml\">\r\n<head> \r\n<meta charset=\"utf-8\"> \r\n<title>person</title> \r\n<link type=\"text/css\" rel=\"stylesheet\" href=\"../../css/login.css\" />\r\n<link type=\"text/css\" rel=\"stylesheet\" href=\"../../css/bootstrap.min.css\" />\r\n<style type=\"text/css\">\r\nbody{\r\n    width:100% ;background-image: url(../../images/1.jpg);height:auto; overflow: hidden;background-repeat: no-repeat;background-size: 100% 100%;\r\n}\r\n.form-control{\r\n    width: 300px;\r\n}\r\n</style>\r\n</head>\r\n<body>\r\n \r\n<div id=\"contain\">\r\n \r\n    <br>\r\n<h1 style=\"font-weight: bold;font-family: cursive;margin-left: 150px;\">Royal Hotel</h1>\r\n\r\n<br>\r\n<form class=\"form-horizontal\" role=\"form\">\r\n\t<div class=\"form-group\" style=\"margin-left: 80px;\">\r\n\t\t<label for=\"firstname\" class=\"col-sm-2 control-label\">Email:</label>\r\n\t\t<div class=\"col-sm-10\">\r\n\t\t\t<input type=\"email\" class=\"form-control\" id=\"firstname\" \r\n\t\t\t\t   placeholder=\"please input your email\">\r\n\t\t</div>\r\n\t</div><br>\r\n\t<div class=\"form-group\">\r\n\t\t<label for=\"lastname\" class=\"col-sm-2 control-label\" style=\"margin-left: 48px;\">Password:</label>\r\n\t\t<div class=\"col-sm-5\">\r\n\t\t\t<input type=\"password\" class=\"form-control\" id=\"lastname\" style=\"margin-left: 30px;\"\r\n\t\t\t\t   placeholder=\"please input your password\">\r\n\t\t</div>\r\n\t\t<div class=\"col-sm-offset-2 col-sm-5\">\r\n\t</div><br>\r\n\t<div class=\"form-group\">\r\n\t\t<div class=\"col-sm-offset-0 col-sm-8\">\r\n\t\t\t<button type=\"submit\" class=\"btn btn-default\"style=\"margin-left: 80px;\"><a href=\"index.html\">Sign In</a></button>\r\n\t\t<button class=\"btn btn-default\" style=\"margin-left: 180px;margin-top: -70px;width: 120px;\">\r\n\t\t\t<a href=\"register\" style=\"color: black;text-decoration: none;\">Create Account</a></button>\r\n\t\t</div>\r\n\t</div>\r\n</form>\r\n</div>\r\n \r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- HRApp/src/main/resources/templates/login.html	(revision cbf638f7a1a32db2cad591fe5613760f1ba92dc8)
++++ HRApp/src/main/resources/templates/login.html	(date 1607410748651)
+@@ -40,7 +40,7 @@
+ 	</div><br>
+ 	<div class="form-group">
+ 		<div class="col-sm-offset-0 col-sm-8">
+-			<button type="submit" class="btn btn-default"style="margin-left: 80px;"><a href="index.html">Sign In</a></button>
++			<button type="submit" class="btn btn-default"style="margin-left: 80px;">Sign In</a></button>
+ 		<button class="btn btn-default" style="margin-left: 180px;margin-top: -70px;width: 120px;">
+ 			<a href="register" style="color: black;text-decoration: none;">Create Account</a></button>
+ 		</div>
+Index: HRApp/target/classes/templates/login.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html style=\"height: 100%;width:100% ;\" xmlns:th=\"http://www.w3.org/1999/xhtml\">\r\n<head> \r\n<meta charset=\"utf-8\"> \r\n<title>person</title> \r\n<link type=\"text/css\" rel=\"stylesheet\" href=\"../../css/login.css\" />\r\n<link type=\"text/css\" rel=\"stylesheet\" href=\"../../css/bootstrap.min.css\" />\r\n<style type=\"text/css\">\r\nbody{\r\n    width:100% ;background-image: url(../../images/1.jpg);height:auto; overflow: hidden;background-repeat: no-repeat;background-size: 100% 100%;\r\n}\r\n.form-control{\r\n    width: 300px;\r\n}\r\n</style>\r\n</head>\r\n<body>\r\n \r\n<div id=\"contain\">\r\n \r\n    <br>\r\n<h1 style=\"font-weight: bold;font-family: cursive;margin-left: 150px;\">Royal Hotel</h1>\r\n\r\n<br>\r\n<form class=\"form-horizontal\" role=\"form\">\r\n\t<div class=\"form-group\" style=\"margin-left: 80px;\">\r\n\t\t<label for=\"firstname\" class=\"col-sm-2 control-label\">Email:</label>\r\n\t\t<div class=\"col-sm-10\">\r\n\t\t\t<input type=\"email\" class=\"form-control\" id=\"firstname\" \r\n\t\t\t\t   placeholder=\"please input your email\">\r\n\t\t</div>\r\n\t</div><br>\r\n\t<div class=\"form-group\">\r\n\t\t<label for=\"lastname\" class=\"col-sm-2 control-label\" style=\"margin-left: 48px;\">Password:</label>\r\n\t\t<div class=\"col-sm-5\">\r\n\t\t\t<input type=\"password\" class=\"form-control\" id=\"lastname\" style=\"margin-left: 30px;\"\r\n\t\t\t\t   placeholder=\"please input your password\">\r\n\t\t</div>\r\n\t\t<div class=\"col-sm-offset-2 col-sm-5\">\r\n\t</div><br>\r\n\t<div class=\"form-group\">\r\n\t\t<div class=\"col-sm-offset-0 col-sm-8\">\r\n\t\t\t<button type=\"submit\" class=\"btn btn-default\"style=\"margin-left: 80px;\"><a href=\"index.html\">Sign In</a></button>\r\n\t\t<button class=\"btn btn-default\" style=\"margin-left: 180px;margin-top: -70px;width: 120px;\">\r\n\t\t\t<a href=\"register\" style=\"color: black;text-decoration: none;\">Create Account</a></button>\r\n\t\t</div>\r\n\t</div>\r\n</form>\r\n</div>\r\n \r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- HRApp/target/classes/templates/login.html	(revision cbf638f7a1a32db2cad591fe5613760f1ba92dc8)
++++ HRApp/target/classes/templates/login.html	(date 1607412259709)
+@@ -40,7 +40,7 @@
+ 	</div><br>
+ 	<div class="form-group">
+ 		<div class="col-sm-offset-0 col-sm-8">
+-			<button type="submit" class="btn btn-default"style="margin-left: 80px;"><a href="index.html">Sign In</a></button>
++			<button type="submit" class="btn btn-default"style="margin-left: 80px;">Sign In</a></button>
+ 		<button class="btn btn-default" style="margin-left: 180px;margin-top: -70px;width: 120px;">
+ 			<a href="register" style="color: black;text-decoration: none;">Create Account</a></button>
+ 		</div>
+Index: .idea/inspectionProfiles/Project_Default.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><component name=\"InspectionProjectProfileManager\">\n  <profile version=\"1.0\">\n    <option name=\"myName\" value=\"Project Default\" />\n    <inspection_tool class=\"HtmlUnknownAttribute\" enabled=\"true\" level=\"WARNING\" enabled_by_default=\"true\">\n      <option name=\"myValues\">\n        <value>\n          <list size=\"1\">\n            <item index=\"0\" class=\"java.lang.String\" itemvalue=\"value\" />\n          </list>\n        </value>\n      </option>\n      <option name=\"myCustomValuesEnabled\" value=\"true\" />\n    </inspection_tool>\n  </profile>\n</component>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/inspectionProfiles/Project_Default.xml	(revision cbf638f7a1a32db2cad591fe5613760f1ba92dc8)
++++ .idea/inspectionProfiles/Project_Default.xml	(date 1607403239849)
+@@ -4,8 +4,10 @@
+     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+       <option name="myValues">
+         <value>
+-          <list size="1">
++          <list size="3">
+             <item index="0" class="java.lang.String" itemvalue="value" />
++            <item index="1" class="java.lang.String" itemvalue="th:action" />
++            <item index="2" class="java.lang.String" itemvalue="th:object" />
+           </list>
+         </value>
+       </option>
+Index: .idea/sqldialects.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/sqldialects.xml	(date 1607417292459)
++++ .idea/sqldialects.xml	(date 1607417292459)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="SqlDialectMappings">
++    <file url="file://$PROJECT_DIR$/HRApp/src/main/resources/templates/booking.html" dialect="GenericSQL" />
++  </component>
++</project>
+\ No newline at end of file
