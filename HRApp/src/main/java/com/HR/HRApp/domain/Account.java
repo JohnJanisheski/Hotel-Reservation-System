@@ -38,7 +38,7 @@ public class Account {
 
     @OneToMany
     @JoinColumn(name = "reservation")
-    private Set<Reservation> orderHistory = new HashSet<>();
+    private Set<Room> orderHistory = new HashSet<>();
 
     public Account(int type, String firstName, String lastName, String Email, String password){
         this.type = type;
@@ -91,6 +91,14 @@ public class Account {
         return isLoggedin;
     }
 
+    public Set<Room> getOrderHistory() {
+        return orderHistory;
+    }
+
+    public void setOrderHistory(Set<Room> orderHistory) {
+        this.orderHistory = orderHistory;
+    }
+
     //log in
     public void setLoggedin(Boolean loggedin) {
         isLoggedin = loggedin;
@@ -99,4 +107,9 @@ public class Account {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void addReservation(Room room) {
+        orderHistory.add(room);
+    }
+
 }

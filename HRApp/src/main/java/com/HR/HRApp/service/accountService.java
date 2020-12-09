@@ -1,6 +1,8 @@
 package com.HR.HRApp.service;
 
 import com.HR.HRApp.domain.Account;
+import com.HR.HRApp.domain.Reservation;
+import com.HR.HRApp.domain.Room;
 import org.springframework.stereotype.Service;
 
 
@@ -29,4 +31,6 @@ public interface accountService{
     void changeLoggedIn(Account account);
 
     void setAccountLogOut(Account logInaccount);
+
+    void setReservationToAccount(Room room);
 }

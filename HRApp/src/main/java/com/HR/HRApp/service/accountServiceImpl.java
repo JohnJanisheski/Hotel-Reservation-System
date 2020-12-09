@@ -1,6 +1,8 @@
 package com.HR.HRApp.service;
 
 import com.HR.HRApp.domain.Account;
+import com.HR.HRApp.domain.Reservation;
+import com.HR.HRApp.domain.Room;
 import com.HR.HRApp.repositories.accountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -83,5 +85,11 @@ public class accountServiceImpl implements accountService{
         logInaccount.setLoggedin(false);
         accountRepository.deleteById(logInaccount.getId());
         accountRepository.save(logInaccount);
+    }
+
+    @Override
+    public void setReservationToAccount(Room room) {
+        Account account =  accountRepository.findLoggedInAccount();
+        account.addReservation(room);
     }
 }

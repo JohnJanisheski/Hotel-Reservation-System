@@ -1,6 +1,7 @@
 package com.HR.HRApp.domain;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Room {
@@ -20,12 +21,33 @@ public class Room {
     private int floor; //floor: 1, 2
     private boolean isClean; //isCleaned?
 
+    private Date startDate;
+    private Date endDate;
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
     @ManyToOne
     private RoomType roomType;//room category
 
     @ManyToOne
     private Reservation reservation;//reservation Info
 
+    @ManyToOne
+    private Account account; //logged in account
 
     public Room() {
     }

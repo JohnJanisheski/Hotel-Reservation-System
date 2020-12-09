@@ -71,48 +71,43 @@
             <div class="section-head">
                 <h2>Booking Room</h2>
             </div>
-            <form class="form-horizontal" role="form" action="#"
-				  th:action="@{/saveReservationMain}" th:object="${reservation}"
-				  method="POST">
-                <label class="col-sm-6 control-label" style="margin-left: 100px;"> Arrival :</label>
-                <input type="date" th:field = "*{reservedStartDate}">
 
+            <form action="#" th:action="@{/saveReservationMain}" th:object="${room}"
+                  method="POST">
 
-                <label for="endDate" class="col-sm-6 control-label" style="margin-left: 100px;"> Departure :</label>
-                <input type="date" id="endDate" name="endDate" th:field = "*{reservedEndDate}">
+                <label>Start Date</label>
+                <input type="date" th:field="*{startDate}"
+                       placeholder="Start Date" class="form-control mb-4 col-4">
 
-                <div class="form-group" style="margin-left: 100px;">
-                    <label for="numRooms" class="col-sm-6 control-label">number of room:</label>
-                    <div class="col-sm-6" style="margin-left: -20px;">
-                        <input type="text" class="form-control" id="numRooms" th:field = "*{roomNum}">
-                    </div>
-                </div>
+                <label>End Date</label>
+                <input type="date" th:field="*{endDate}"
+                       placeholder="End Date" class="form-control mb-4 col-4">
 
-
-                <div class="form-group" style="margin-left: 100px;">
-                    <label for="roomType" class="col-sm-6 control-label">Room Type:</label>
-                    <select class="form-control" id="roomType" style="width: 200px;" th:field = "*{double_single}">
-                        <option th:value="double">double</option>
-                        <option th:value="single">single</option>
-                    </select>
-                </div>
-
-				<div class="form-group" style="margin-left: 100px;">
-					<label for="isSmoking" class="col-sm-6 control-label">non-smoking:</label>
-					<select class="form-control" id="isSmoking" style="width: 200px;" th:field = "*{isSmoking}">
-						<option th:value="yes">yes</option>
-						<option th:value="no">no</option>
-					</select>
-				</div>
-
+                <table border="1" class="table table-striped table-responsive-md">
+                    <thead>
+                    <tr>
+                        <th>Room Name</th>
+                        <th>Room Type</th>
+                        <th>Allow Smoking?</th>
+                        <th>Room Price</th>
+                        <th> Actions </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each = "room:${availableRoomList}">
+                        <td th:text="${room.roomName}"></td>
+                        <td th:text="${room.roomType.getRoomTypeName()}"></td>
+                        <td th:text="${room.roomType.allowSmoking}"></td>
+                        <td th:text="${room.roomType.price}"></td>
+                        <td>
+                            <a th:href="@{/addRoomForReservationMain/{id}(id=${room.id})}" class="btn btn-danger">Book</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
 
                 <br>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-5">
-                        <button type="submit" class="btn hover-state" style="margin-left: 200px;">Book
-                            a Room</a></button>
-                    </div>
-                </div>
+
             </form>
 
             <br><br><br>

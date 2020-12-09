@@ -7,7 +7,13 @@ import java.util.Set;
 
 @Service
 public interface roomService {
-    void setRoomIsLiveByNum(int roomNum, long accountTypeID);
+    //Reservation setRoomIsLiveByNum(int roomNum, long accountTypeID, Reservation reservation);
 
     Set<Room> getAvailableRoomList();
+
+    Room getRoomById(long id);
+
+    void save(Room room);
+
+    void setReservationforRoom(long id);
 }

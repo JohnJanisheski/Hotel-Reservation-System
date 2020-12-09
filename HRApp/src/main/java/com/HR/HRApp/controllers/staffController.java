@@ -85,16 +85,6 @@ public class staffController {
     }
 
 
-    //@ModelAttribute("webFrameworkList")
-    //public List<String> getWebFrameworkList() {
-    //    List<String> webFrameworkList = new ArrayList<String>();
-    //    webFrameworkList.add("Spring MVC");
-    //    webFrameworkList.add("Struts 1");
-    //    webFrameworkList.add("Struts 2");
-    //    webFrameworkList.add("Apache Wicket");
-    //    return webFrameworkList;
-    //}
-
     @ModelAttribute("availableRoomList")
     public Set<Room> getAvailableRoomList()
     {

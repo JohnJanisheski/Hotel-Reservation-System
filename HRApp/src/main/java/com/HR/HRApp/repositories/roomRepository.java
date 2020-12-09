@@ -17,4 +17,10 @@ public interface roomRepository extends CrudRepository<Room, Long> {
 
     @Query("from Room where isLive = ?1 and roomType.id = ?2")
     List<Room> findRoomByisLive_TypeId(int i, long accountTypeID);
+
+    @Query("update Room set isLive=1 where id = ?1")
+    void setIsLiveById(long id);
+
+    @Query("from Room where id=?1")
+    Room myfindById(long id);
 }

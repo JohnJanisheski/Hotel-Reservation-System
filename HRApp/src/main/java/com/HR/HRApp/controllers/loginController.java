@@ -37,8 +37,8 @@ public class loginController {
 
             loggedinAccount.setLoggedin(true);
 
-            System.out.println(loggedinAccount.getLoggedin());
-            System.out.println(loggedinAccount.getId());
+            //System.out.println(loggedinAccount.getLoggedin());
+            //System.out.println(loggedinAccount.getId());
 
             //save the changed Bool to database
             accountService.changeLoggedIn(loggedinAccount);
