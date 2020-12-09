@@ -2,6 +2,7 @@ package com.HR.HRApp.service;
 
 import com.HR.HRApp.domain.Reservation;
 import com.HR.HRApp.repositories.reservationRepository;
+import com.HR.HRApp.repositories.roomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,9 @@ public class reservationServiceImpl implements reservationService {
 
     @Autowired
     private reservationRepository reservationRepository;
+
+    @Autowired
+    private roomService roomService;
 
     @Override
     public List<Reservation> getAllReservtions() {
@@ -31,5 +35,31 @@ public class reservationServiceImpl implements reservationService {
     @Override
     public void deleteReservationById(long id) {
         this.reservationRepository.deleteById(id);
+    }
+
+    @Override
+    public void save(Reservation reservation) {
+        //
+        long accountTypeID=0;
+        if(reservation.getIsSmoking() == "yes")//non-smoking
+        {
+            if(reservation.getDouble_single() == "double")
+            {
+                accountTypeID = 4; //non double
+            }
+            else
+                accountTypeID = 2; //non sig
+        }
+        else { //smoking
+            if(reservation.getDouble_single() == "double")
+            {
+                accountTypeID =3; //s, d
+            }
+            else
+                accountTypeID =1;
+        }
+
+        roomService.setRoomIsLiveByNum(reservation.getRoomNum(),accountTypeID);
+        reservationRepository.save(reservation);
     }
 }

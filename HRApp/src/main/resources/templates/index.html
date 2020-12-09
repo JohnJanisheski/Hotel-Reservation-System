@@ -1,157 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>home</title>
-	<link rel="stylesheet" href="../../css/vendor.css" />
-	<link rel="stylesheet" href="../../css/LineIcons.min.css" />
-	<link href="../../css/tam.css" rel="stylesheet">
-	<link type="text/css" rel="stylesheet" href="../../css/tempusdominus-bootstrap-4.css" />
-	<link type="text/css" rel="stylesheet" href="../../css/base.css" />
-	<link type="text/css" rel="stylesheet" href="../../css/highlight.min.css" />
-	<link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-		<link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<script src="../../js/jquery-1.11.0.min.js"></script>
-	<script src="../../js/popper.min.js"></script>
-	<script src="../../js/bootstrap.min.js"></script>
-	<script src="../../js/moment-with-locales.min.js"></script>
-	<script src="../../js/moment-timezone-with-data-2012-2022.min.js"></script>
-	<script src="../../js/base.js"></script>
-	<script src="../../js/highlight.min.js"></script>
-	<script src="../../js/tempusdominus-bootstrap-4.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>home</title>
+    <link rel="stylesheet" href="../../css/vendor.css"/>
+    <link rel="stylesheet" href="../../css/LineIcons.min.css"/>
+    <link href="../../css/tam.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../../css/tempusdominus-bootstrap-4.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/base.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/highlight.min.css"/>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="../../js/jquery-1.11.0.min.js"></script>
+    <script src="../../js/popper.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/moment-with-locales.min.js"></script>
+    <script src="../../js/moment-timezone-with-data-2012-2022.min.js"></script>
+    <script src="../../js/base.js"></script>
+    <script src="../../js/highlight.min.js"></script>
+    <script src="../../js/tempusdominus-bootstrap-4.js"></script>
 
 </head>
 
 <body data-spy="scroll" data-target=".navbar">
-	<aside class="aside">
+<aside class="aside">
 
-		<div class="nav-wrapper">
+    <div class="nav-wrapper">
 
-			<nav class="navbar text-center align-items-center justify-content-center">
+        <nav class="navbar text-center align-items-center justify-content-center">
 
 
+            <div class="collapse navbar-collapse show" id="navbarCollapse">
+                <div class="about-avatar mb-5">
+                    <div class="about-avatar-details mt-4">
+                        <h1>Royal Hotel</h1>
+                    </div>
 
-                <div class="collapse navbar-collapse show" id="navbarCollapse">
-                	<div class="about-avatar mb-5">
-						<div class="about-avatar-details mt-4">
-							<h1>Royal Hotel</h1>
-						</div>
-
-					</div>
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/home_loggedIn"><i class="lni-home"></i>Home</a>
-						</li>
-						<li class="nav-item">
-                            <a class="nav-link" href="/about_loggedIn"><i class="lni-phone-handset"></i>About us</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index"><i class="lni-briefcase"></i>Booking</a>
-                        </li>
-						<li class="nav-item">
-							<a class="nav-link" href="accountReservations"><i class="lni-notepad"></i>Order History</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="account"><i class="lni-pencil"></i></i>Account Information</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/logout"><i class="lni-pencil"></i></i>Sign Out</a>
-						</li>
-               
-                    </ul>
                 </div>
-	        </nav>
-        </div>
-        <!-- END: NAVBAR -->
-    </aside>
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/home_loggedIn"><i class="lni-home"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about_loggedIn"><i class="lni-phone-handset"></i>About us</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index"><i class="lni-briefcase"></i>Booking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="accountReservations"><i class="lni-notepad"></i>Order History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="account"><i class="lni-pencil"></i></i>Account Information</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout"><i class="lni-pencil"></i></i>Sign Out</a>
+                    </li>
 
-	<div class="page-wrapper" style="width: 100%;">
-		<section class="section section-light section-contact" id="contact" style="width: 70%;">
-			<div class="container" style="width: 100%;">
-				<div class="section-head">
-					<h2>Booking Room</h2>					
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!-- END: NAVBAR -->
+</aside>
+
+<div class="page-wrapper" style="width: 100%;">
+    <section class="section section-light section-contact" id="contact" style="width: 70%;">
+        <div class="container" style="width: 100%;">
+            <div class="section-head">
+                <h2>Booking Room</h2>
+            </div>
+            <form class="form-horizontal" role="form" action="#"
+				  th:action="@{/saveReservationMain}" th:object="${reservation}"
+				  method="POST">
+                <label class="col-sm-6 control-label" style="margin-left: 100px;"> Arrival :</label>
+                <input type="date" th:field = "*{reservedStartDate}">
+
+
+                <label for="endDate" class="col-sm-6 control-label" style="margin-left: 100px;"> Departure :</label>
+                <input type="date" id="endDate" name="endDate" th:field = "*{reservedEndDate}">
+
+                <div class="form-group" style="margin-left: 100px;">
+                    <label for="numRooms" class="col-sm-6 control-label">number of room:</label>
+                    <div class="col-sm-6" style="margin-left: -20px;">
+                        <input type="text" class="form-control" id="numRooms" th:field = "*{roomNum}">
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="margin-left: 100px;">
+                    <label for="roomType" class="col-sm-6 control-label">Room Type:</label>
+                    <select class="form-control" id="roomType" style="width: 200px;" th:field = "*{double_single}">
+                        <option th:value="double">double</option>
+                        <option th:value="single">single</option>
+                    </select>
+                </div>
+
+				<div class="form-group" style="margin-left: 100px;">
+					<label for="isSmoking" class="col-sm-6 control-label">non-smoking:</label>
+					<select class="form-control" id="isSmoking" style="width: 200px;" th:field = "*{isSmoking}">
+						<option th:value="yes">yes</option>
+						<option th:value="no">no</option>
+					</select>
 				</div>
-				<form class="form-horizontal" role="form">
-				<label for="lastname" class="col-sm-6 control-label" style="margin-left: 100px;">	Arrival	:</label>
-					<div class="row">		
-						<div class="col-sm-6">
-							<div class="form-group">
-								<div class="input-group date" id="datetimepicker4" data-target-input="nearest" style="margin-left: 100px;">
-									<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" />
-									<div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
-										<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<script type="text/javascript">
-							$(function () {
-								$('#datetimepicker4').datetimepicker({
-									format: 'L'
-								});
-							});
-						</script>
-					</div>
-					<label for="lastname" class="col-sm-6 control-label" style="margin-left: 100px;">	Departure	:</label>
-					<div class="row">		
-						<div class="col-sm-6">
-							<div class="form-group">
-								<div class="input-group date" id="datetimepicker41" data-target-input="nearest" style="margin-left: 100px;">
-									<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker41" />
-									<div class="input-group-append" data-target="#datetimepicker41" data-toggle="datetimepicker">
-										<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<script type="text/javascript">
-							$(function () {
-								$('#datetimepicker41').datetimepicker({
-									format: 'L'
-								});
-							});
-						</script>
-					</div>
-					<div class="radio" style="margin-left: 120px;">
-						<label for="sel1" >Adults:</label>
-						<label><input type="radio" name="optradio">1</label>
-						<label><input type="radio" name="optradio">2</label>
-						<label><input type="radio" name="optradio">3</label>
-						<label><input type="radio" name="optradio">4</label>
-					  </div>
-					  <div class="radio" style="margin-left: 120px;">
-						<label for="sel1" >Children:</label>
-						<label><input type="radio" name="optradio1">1</label>
-						<label><input type="radio" name="optradio1">2</label>
-						<label><input type="radio" name="optradio1">3</label>
-						<label><input type="radio" name="optradio1">4</label>
-					  </div>
-					<div class="form-group" style="margin-left: 100px;">
-						<label for="lastname" class="col-sm-6 control-label" >number of room:</label>
-						<div class="col-sm-6" style="margin-left: -20px;">
-							<input type="text" class="form-control" id="lastname" >
-						</div>
-					</div>
-					<div class="form-group" style="margin-left: 100px;">
-						<label for="sel1" class="col-sm-6 control-label">non-smoking:</label>
-						<select class="form-control" id="sel1" style="width: 200px;">
-						  <option>yes</option>
-						  <option>no</option>
-						</select>
-					  </div><br>
-					  <div class="form-group">
-						<div class="col-sm-offset-2 col-sm-5">
-							<button type="submit" class="btn hover-state" style="margin-left: 200px;"><a href="booking">Book a Room</a></button>
-						</div>
-					</div>
-				</form>
-				
-			<br><br><br>
-			</div>
 
-		</section>
-	</div>
-	<script src="../../js/custom.js"></script>
+
+                <br>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-5">
+                        <button type="submit" class="btn hover-state" style="margin-left: 200px;">Book
+                            a Room</a></button>
+                    </div>
+                </div>
+            </form>
+
+            <br><br><br>
+        </div>
+
+    </section>
+</div>
+<script src="../../js/custom.js"></script>
 </body>
 </html>

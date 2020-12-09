@@ -24,9 +24,28 @@ public class Reservation {
     @ManyToOne
     private Reservation reservation;//reservation Info
 
-    private int roomNum;
+    private int roomNum; //number of rooms wanted
 
-    private RoomType roomType;
+    private String double_single;
+    private String isSmoking;
+
+    public String getDouble_single() {
+        return double_single;
+    }
+
+    public void setDouble_single(String double_single) {
+        this.double_single = double_single;
+    }
+
+    public String getIsSmoking() {
+        return isSmoking;
+    }
+
+    public void setIsSmoking(String isSmoking) {
+        this.isSmoking = isSmoking;
+    }
+
+    public Reservation(){}
 
     public Reservation(String reservedStartDate, String reservedEndDate, String email) {
         this.reservedStartDate = reservedStartDate;
