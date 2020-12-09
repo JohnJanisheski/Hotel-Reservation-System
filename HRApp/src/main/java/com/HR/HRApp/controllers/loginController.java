@@ -19,7 +19,7 @@ public class loginController {
     public String login_start(Model model) {
         Account account = new Account();
         model.addAttribute("account", account);
-        return "login";
+        return "login.html";
     }
 
     @PostMapping("/signInAction")
