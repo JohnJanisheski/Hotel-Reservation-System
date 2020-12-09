@@ -9,6 +9,7 @@ import java.util.Set;
 public class roomType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "room_id")
     private long id;
 
     private String roomTypeName;// room type name
@@ -16,11 +17,11 @@ public class roomType {
     private double price;//price
     private int type;//1: single room, 2: double room
     private int num;//the number of available rooms of this type
-
-    @OneToMany(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "room_type_id")
-    private Set<room> rooms = new HashSet<>();
     private boolean isAllowSmoking; //false: not allow. true: allow
+
+
+    @OneToMany(targetEntity = room.class, mappedBy = "roomType", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<room> rooms = new HashSet<>();
 
     public roomType() {
     }
@@ -29,25 +30,28 @@ public class roomType {
             , String image
             , double price
             , int type
-            , int num
-            , Set<room> rooms
             , boolean isAllowSmoking)
     {
+        this.num = 0;
         this.roomTypeName = roomTypeName;
         this.image = image;
         this.price = price;
         this.type = type;
-        this.num = num;
         this.isAllowSmoking = isAllowSmoking;
     }
 
     public Set<room> getRooms() {
-        return rooms;
+        return this.rooms;
     }
 
-    public void setRooms(Set<room> rooms) {
-        this.rooms = rooms;
+    public void addRoom(room rooms) {
+        this.rooms.add(rooms);
+        this.num = this.num + 1;
     }
+
+    public void increaseNum(){this.num++;}
+
+    public void decreaseNum() {this.num--;}
 
     public long getId() {
         return id;
