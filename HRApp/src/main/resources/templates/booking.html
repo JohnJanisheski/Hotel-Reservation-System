@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>about us</title>
-	<link rel="stylesheet" href="../../css/vendor.css" />
-	<link rel="stylesheet" href="../../css/LineIcons.min.css" />
-	<link href="../../css/tam.css" rel="stylesheet">
+	<link rel="stylesheet" href="/../css/vendor.css" />
+	<link rel="stylesheet" href="/../css/LineIcons.min.css" />
+	<link href="/../css/tam.css" rel="stylesheet">
 <style rel="stylesheet">
 .bo{
 	background-color: rgb(145, 164, 223);
@@ -76,15 +76,45 @@
 					  </nav>
 								
 				</div>
+				<a th:href = "@{/showRooms}" class="btn btn-primary btn-sm mb-3"> Rooms </a>
+				<table border="1" class = "table table-striped table-responsive-md">
+					<thead>
+					<tr>
+						<th>
+							<a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
+								Employee First Name</a>
+						</th>
+						<th>
+							<a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
+								Employee Last Name</a>
+						</th>
+						<th>
+							<a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
+								Employee Email</a>
+						</th>
+						<th> Actions </th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="employee : ${listEmployees}">
+						<td th:text="${employee.firstName}"></td>
+						<td th:text="${employee.lastName}"></td>
+						<td th:text="${employee.email}"></td>
+						<td> <a th:href="@{/showFormForUpdate/{id}(id=${employee.id})}" class="btn btn-primary">Update</a>
+							<a th:href="@{/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a>
+						</td>
+					</tr>
+					</tbody>
+				</table>
 					 <table style="background-color: rgba(247, 240, 240, 0.5);width: 100%;border-radius: 40px;height: 300px;" cellspacing="10">
 						 <tr>
-							 <td rowspan="2"><img src="../../images/2.jpg" style="width: 300px;height: 200px;margin-top: 50px;border-radius: 40px;margin-left: 20px;" /></td>
+							 <td rowspan="2"><img src="/../images/2.jpg" style="width: 300px;height: 200px;margin-top: 50px;border-radius: 40px;margin-left: 20px;" /></td>
 							 <td rowspan="2"><p style="font-weight:bold;font-size:xx-large">Double bed</p>
 								450 ft2<br>
 								two full sized beds<br>
 								free wifi<br>
 								full bath
-							</td> 
+							</td>
 							 <td><button class="bo">$100 per night</button></td>
 						 </tr>
 						 <tr>
