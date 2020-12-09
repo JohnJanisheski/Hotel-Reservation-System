@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html style="height: 100%;width:100% ;" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>person</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="/../css/login.css"/>
+    <link type="text/css" rel="stylesheet" href="/../css/tempusdominus-bootstrap-4.css"/>
+    <link type="text/css" rel="stylesheet" href="/../css/base.css"/>
+    <link type="text/css" rel="stylesheet" href="/../css/highlight.min.css"/>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/../css/vendor.css" />
+    <link rel="stylesheet" href="/../css/LineIcons.min.css" />
+    <link href="/../css/tam.css" rel="stylesheet">
+    <script src="../../js/jquery-1.11.0.min.js"></script>
+    <script src="/../js/popper.min.js"></script>
+    <script src="/../js/bootstrap.min.js"></script>
+    <script src="/../js/moment-with-locales.min.js"></script>
+    <script src="/../js/moment-timezone-with-data-2012-2022.min.js"></script>
+    <script src="/../js/base.js"></script>
+    <script src="/../js/highlight.min.js"></script>
+    <script src="/../js/tempusdominus-bootstrap-4.js"></script>
+    <style type="text/css">
+        body, html {
+            width: 100%;
+            background-image: url(../../images/1.jpg);
+            height: auto;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-attachment: fixed;
+        }
+
+        .form-control {
+            width: 300px;
+        }
+
+        .dropdown-menu {
+            width: 1000px;
+        }
+    </style>
+</head>
+<body data-spy="scroll" data-target=".navbar">
+<aside class="aside">
+<div class="nav-wrapper">
+
+    <nav class="navbar text-center align-items-center justify-content-center">
+        <div class="collapse navbar-collapse show" id="navbarCollapse">
+            <div class="about-avatar mb-5">
+                <div class="about-avatar-details mt-4">
+                    <h1>Royal Hotel</h1>
+                </div>
+
+            </div>
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home"><i class="lni-home"></i>Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about"><i class="lni-phone-handset"></i>About us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+</aside>
+
+<div id="contain">
+
+    <br>
+    <h1 style="font-weight: bold;font-family: cursive;margin-left: 150px;">Royal Hotel</h1>
+
+    <br>
+    <form action="#" th:action="@{/saveAccount}" th:object="${account}" method="POST">
+        <div class="form-group" style="margin-left: 100px;">
+            <label for="firstname" class="col-sm-6 control-label">First name:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="firstname" th:field="*{firstName}"
+                       placeholder="please input your First name">
+            </div>
+        </div>
+
+
+        <div class="form-group" style="margin-left: 100px;">
+            <label for="lastname" class="col-sm-6 control-label">Last name:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="lastname" th:field="*{lastName}"
+                       placeholder="please input your Last name">
+            </div>
+        </div>
+
+
+        <div class="form-group" style="margin-left: 100px;">
+            <label for="email" class="col-sm-6 control-label">Email:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="email" th:field="*{email}"
+                       placeholder="please input your email">
+            </div>
+        </div>
+
+
+        <div class="form-group" style="margin-left: 100px;">
+            <label for="password" class="col-sm-6 control-label">Password:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="password" th:field="*{password}"
+                       placeholder="please input your password">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-5">
+                <button type="submit" class="btn btn-default" style="margin-left: 100px;">Sign Up</button>
+                <button class="btn btn-default" style="margin-left: 250px;margin-top: -80px;width: 140px;">
+                    <a href="/login_start" style="color: black;text-decoration: none;">Back to Sign in</a></button>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+<br><br><br><br><br>
+</body>
+</html>
