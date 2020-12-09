@@ -60,6 +60,7 @@ public class bootStrapData implements CommandLineRunner {
         acc = new Account(0, "0", "0", "theapxy@gmail.com", "0");
         accountRepository.save(acc);
 
+        /* use this to sign in*/
         List<Account> EP =  accountRepository.findAccountByEmailAndPassword("theapxy@gmail.com", "0");
         List<Account> E = accountRepository.findByEmail("theapxy@gmail.com");
         System.out.println(E.get(0).getPassword());
