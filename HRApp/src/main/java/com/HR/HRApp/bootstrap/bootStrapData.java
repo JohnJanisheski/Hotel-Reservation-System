@@ -47,9 +47,11 @@ public class bootStrapData implements CommandLineRunner {
         //Admin Accounts and Non Admin Accounts
         Account acc = new Account(2, "John", "Janisheski", "johnjanisheski99@gmail.com", "AdminPassword");
         accountRepository.save(acc);
-        acc = new Account(2, "Xinyi", "Peng", "theapxy@gmail.com", "AdminPassword");
+        acc = new Account(2, "Xinyi", "Peng", "theapxy@gmail.com", "2");
         accountRepository.save(acc);
-        acc = new Account(2, "Sarah", "Derr", "test@gmail.com", "AdminPassword");
+        acc = new Account(1, "Xinyi", "Peng", "theapxy@gmail.com", "1");
+        accountRepository.save(acc);
+        acc = new Account(1, "Sarah", "Derr", "test@gmail.com", "1");
         accountRepository.save(acc);
         acc = new Account(2, "Yuhui", "Last Name", "kkfiner@gmail.com", "AdminPassword");
         accountRepository.save(acc);
@@ -60,13 +62,9 @@ public class bootStrapData implements CommandLineRunner {
         acc = new Account(0, "0", "0", "theapxy@gmail.com", "0");
         accountRepository.save(acc);
 
-        /* use this to sign in*/
-        List<Account> EP =  accountRepository.findAccountByEmailAndPassword("theapxy@gmail.com", "0");
-        List<Account> E = accountRepository.findByEmail("theapxy@gmail.com");
-        System.out.println(E.get(0).getPassword());
-        System.out.println("Opened in BootStrap");
-        System.out.println("Number of searchAccount:"+EP.size());
-        System.out.println("Number of searchAccount by email:"+E.size());
+        List<Account> Employee = accountRepository.findAccountByType(1);
+
+        System.out.println("Number of Employees = " + Employee.size());
         System.out.println("Number of accounts = " + accountRepository.count());
         System.out.println("Number of rooms = " + roomRepository.count());
         System.out.println("Number of room types = " + roomTypeRepository.count());
