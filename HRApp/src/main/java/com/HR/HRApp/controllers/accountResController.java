@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class bookController {
+public class accountResController {
 
-    @RequestMapping("/book")
+    @RequestMapping("/accountReservations")
     public String about() {
-        return "index.html";
+        return "accountReservations.html";
     }
 }

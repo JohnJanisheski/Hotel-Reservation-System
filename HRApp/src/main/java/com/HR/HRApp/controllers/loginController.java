@@ -35,7 +35,7 @@ public class loginController {
 
             // the user is a customer
             if(loggedinAccount.getType() == 0)
-                return "index";
+                return "person";
             // the user is a staff
             else if(loggedinAccount.getType() == 1)
                 return "staffHomePage";
