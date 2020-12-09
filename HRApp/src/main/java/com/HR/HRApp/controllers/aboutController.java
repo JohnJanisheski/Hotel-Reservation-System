@@ -12,4 +12,10 @@ public class aboutController {
     public String about() {
         return "/about.html";
     }
+
+    @RequestMapping("/about_loggedIn")
+    public String aboutLoggedIn() {
+        return "/about_loggedIn.html";
+    }
+
 }

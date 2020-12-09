@@ -10,6 +10,6 @@ public class accountController {
 
     @RequestMapping("/account")
     public String about() {
-        return "person.html";
+        return "account.html";
     }
 }

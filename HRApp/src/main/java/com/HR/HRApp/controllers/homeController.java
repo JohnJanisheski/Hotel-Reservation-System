@@ -11,4 +11,9 @@ public class homeController {
     public String welcome() {
         return "home";
     }
+
+    @RequestMapping("/home_loggedIn")
+    public String welcomeLoggedIn() {
+        return "home_loggedIn.html";
+    }
 }
