@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Reservation System</title>
+    <style>
+        body{
+            background-color: #fff3d4;
+        }
+    </style>
+</head>
+<body>
+<h1> This is all current Users! </h1>
+<Table>
+    <Tr>
+        <th> First Name </th>
+        <th> Last Name </th>
+        <th> Username </th>
+        <th> Password </th>
+        <th> User Type </th>
+    </Tr>
+    <Tr th:each="account : ${accounts}">
+        <td th:text="${account.getFirstName()}"> 1 </td>
+        <td th:text="${account.getLastName()}"> 2 </td>
+        <td th:text="${account.getUserName()}"> 3 </td>
+        <td th:text="${account.getPassword()}"> 4 </td>
+        <td th:text="${account.getType()}"> 4 </td>
+    </Tr>
+</Table>
+<button onclick="window.location.href='/'"> Go Back </button>
+
+</body>
+</html>
