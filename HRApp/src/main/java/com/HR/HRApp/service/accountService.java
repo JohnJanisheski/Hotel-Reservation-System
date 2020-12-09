@@ -22,4 +22,9 @@ public interface accountService{
     void deleteAccountById(long id);
     List<Account> getAccountByEmailAndPassword(String email, String password);
 
+    Account getLoggedInAccount();
+
+    void changeLoggedIn(Account account);
+
+    void setAccountLogOut(Account logInaccount);
 }

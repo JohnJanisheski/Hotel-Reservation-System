@@ -65,4 +65,23 @@ public class accountServiceImpl implements accountService{
         // }
         // return res;
     }
+
+    @Override
+    public Account getLoggedInAccount() {
+        return accountRepository.findLoggedInAccount();
+    }
+
+    @Override
+    public void changeLoggedIn(Account account) {
+        account.setLoggedin(true);
+        accountRepository.deleteById(account.getId());
+        accountRepository.save(account);
+    }
+
+    @Override
+    public void setAccountLogOut(Account logInaccount) {
+        logInaccount.setLoggedin(false);
+        accountRepository.deleteById(logInaccount.getId());
+        accountRepository.save(logInaccount);
+    }
 }

@@ -31,7 +31,7 @@ public class room {
     public room() {
     }
 
-    public room(String roomName, String remark, String image, com.HR.HRApp.domain.roomType roomType, int isLive, int floor, boolean isClean, int type) {
+    public room(String roomName, String remark, String image, roomType roomType, int isLive, int floor, boolean isClean, int type) {
         this.roomName = roomName;
         this.remark = remark;
         this.image = image;
@@ -129,6 +129,5 @@ public class room {
     public void setIsClean(boolean isClean) {
         this.isClean = isClean;
     }
-
 
 }
