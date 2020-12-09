@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class bookController {
 
-    @RequestMapping("/book")
+    @RequestMapping("/index")
     public String about() {
         return "index.html";
     }

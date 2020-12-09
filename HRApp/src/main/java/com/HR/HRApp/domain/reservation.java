@@ -8,8 +8,7 @@ import java.util.Set;
 public class reservation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "reservation_id")
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long reservation_id;
 
     private String reservedStartDate;
@@ -19,15 +18,19 @@ public class reservation {
     @JoinColumn(name = "room_id")
     private Set<room> reserved_rooms = new HashSet<>();
 
+    @JoinColumn(name = "email")
+    private String res_email;
+
     @ManyToOne
     private reservation reservation;//reservation Info
 
     public reservation() {
     }
 
-    public reservation(String reservedStartDate, String reservedEndDate) {
+    public reservation(String reservedStartDate, String reservedEndDate, String email) {
         this.reservedStartDate = reservedStartDate;
         this.reservedEndDate = reservedEndDate;
+        this.res_email = email;
     }
 
     public void addRoomToReservation(room room){

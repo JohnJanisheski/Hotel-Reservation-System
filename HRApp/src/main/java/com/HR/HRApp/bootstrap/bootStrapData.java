@@ -94,19 +94,20 @@ public class bootStrapData implements CommandLineRunner {
 
         //Create a Reservation
         //Dates are Month-Day-Year
-        Set<room> resRooms = new HashSet<>();
-        resRooms.add(r.get(9));
-        resRooms.add(r.get(11));
         reservation res1 = new reservation();
-        reservation res = new reservation("12-24-2020", "12-26-2020");
-//        reservationRepository.save(res);
+        reservation res = new reservation("12-24-2020", "12-26-2020", acc.get(0).getEmail());
+        res.addRoomToReservation(r.get(9));
+        res.addRoomToReservation(r.get(11));
+        reservationRepository.save(res);
+        System.out.println(res.getReservation_id() + " : " + res.getReserved_rooms() + " : " + res.getReservedEndDate() + " : " + res.getReservedStartDate());
+
 
         List<Account> Employee = accountRepository.findAccountByType(1);
         System.out.println("Number of Employees = " + Employee.size());
         System.out.println("Number of accounts = " + accountRepository.count());
         System.out.println("Number of rooms = " + roomRepository.count());
         System.out.println("Number of room types = " + roomTypeRepository.count());
-        System.out.println("Number of room types = " + roomTypeRepository.count());
+        System.out.println("Number of room types = " + reservationRepository.count());
 
     }
 }
