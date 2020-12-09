@@ -38,7 +38,7 @@ public class Account {
     private String lastName;
 
     //Every account will have a Email and password
-    @Column(name = "email")
+    @Column(name = "Email")
     private String Email;
     @Column(name = "password")
     private String password;

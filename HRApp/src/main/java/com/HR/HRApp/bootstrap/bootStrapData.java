@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
+import java.util.List;
 
 @EnableJpaRepositories("com.HR.HRApp.repositories")
 @Component
@@ -82,13 +83,19 @@ public class bootStrapData implements CommandLineRunner {
         acc.add(new Account(1, "John", "Doe", "JohnDoe@gmail.com", "StaffPassword"));
         accountRepository.saveAll(acc);
 
-        System.out.println("Opened in BootStrap");
-        System.out.println("Number of accounts = " + accountRepository.count());
-        System.out.println("Number of rooms = " + roomRepository.count());
-        System.out.println("Number of room types = " + roomTypeRepository.count());
 //        accountRepository.findAll().forEach(account -> {
 //            System.out.println(account.getEmail());
 //        });
+
+        List<Account> EP = this.accountRepository.findAccountByEmailAndPassword("johnjanisheski99@gmail.com", "AdminPassword");
+        List<Account> E = this.accountRepository.findByEmail("theapxy@gmail.com");
+        System.out.println(((Account)E.get(0)).getPassword());
+        System.out.println("Opened in BootStrap");
+        System.out.println("size of searchAccount:" + EP.size());
+        System.out.println("size of searchAccount by email:" + E.size());
+        System.out.println("Number of accounts = " + this.accountRepository.count());
+        System.out.println("Number of rooms = " + this.roomRepository.count());
+        System.out.println("Number of room types = " + this.roomTypeRepository.count());
     }
 
     public boolean isLoggedIn() {
