@@ -98,8 +98,8 @@ public class bootStrapData implements CommandLineRunner {
         reservation res = new reservation("12-24-2020", "12-26-2020", acc.get(0).getEmail());
         res.addRoomToReservation(r.get(9));
         res.addRoomToReservation(r.get(11));
-        reservationRepository.save(res);
-        System.out.println(res.getReservation_id() + " : " + res.getReserved_rooms() + " : " + res.getReservedEndDate() + " : " + res.getReservedStartDate());
+        //reservationRepository.save(res);
+        //System.out.println(res.getReservation_id() + " : " + res.getReserved_rooms() + " : " + res.getReservedEndDate() + " : " + res.getReservedStartDate());
 
 
         List<Account> Employee = accountRepository.findAccountByType(1);
