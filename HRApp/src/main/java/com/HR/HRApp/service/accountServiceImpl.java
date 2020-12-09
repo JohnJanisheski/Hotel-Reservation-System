@@ -41,4 +41,17 @@ public class accountServiceImpl implements accountService{
     public void deleteAccountById(long id) {
         this.accountRepository.deleteById(id);
     }
+
+    @Override
+    public List<Account> getAccountByEmailAndPassword(String email, String password) {
+        return accountRepository.findAccountByEmailAndPassword(email, password);
+        // var accounts = (List<Account>) accountRepository.findAll();
+        // List<Account> res = null;
+
+        // for (Account account : accounts) {
+        //     if(account.getEmail() == email && account.getPassword() == password)
+        //         res.add(account);
+        // }
+        // return res;
+    }
 }

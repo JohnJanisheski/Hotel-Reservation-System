@@ -11,4 +11,5 @@ public interface accountService{
     void saveAccount(Account account);
     Account getAccountById(long id);
     void deleteAccountById(long id);
+    List<Account> getAccountByEmailAndPassword(String email, String password);
 }

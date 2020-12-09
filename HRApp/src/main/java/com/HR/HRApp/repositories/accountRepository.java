@@ -11,4 +11,7 @@ import java.util.List;
 public interface accountRepository extends CrudRepository<Account, Long> {
     @Query("FROM Account where Email = ?1")
     List<Account> findByEmail(String email);
+
+    @Query("FROM Account where Email = ?1 and password =?2")
+    List<Account> findAccountByEmailAndPassword(String email, String password);
 }

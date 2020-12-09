@@ -14,6 +14,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @EnableJpaRepositories("com.HR.HRApp.repositories")
 @Component
 public class bootStrapData implements CommandLineRunner {
@@ -55,9 +57,15 @@ public class bootStrapData implements CommandLineRunner {
         accountRepository.save(acc);
         acc = new Account(1, "John", "Doe", "JohnDoe@gmail.com", "StaffPassword");
         accountRepository.save(acc);
+        acc = new Account(0, "0", "0", "theapxy@gmail.com", "0");
+        accountRepository.save(acc);
 
-
+        List<Account> EP =  accountRepository.findAccountByEmailAndPassword("theapxy@gmail.com", "0");
+        List<Account> E = accountRepository.findByEmail("theapxy@gmail.com");
+        System.out.println(E.get(0).getPassword());
         System.out.println("Opened in BootStrap");
+        System.out.println("Number of searchAccount:"+EP.size());
+        System.out.println("Number of searchAccount by email:"+E.size());
         System.out.println("Number of accounts = " + accountRepository.count());
         System.out.println("Number of rooms = " + roomRepository.count());
         System.out.println("Number of room types = " + roomTypeRepository.count());

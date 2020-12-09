@@ -2,13 +2,11 @@ package com.HR.HRApp.controllers;
 
 import com.HR.HRApp.domain.Account;
 import com.HR.HRApp.repositories.accountRepository;
+import com.HR.HRApp.service.accountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.nio.channels.AcceptPendingException;
 import java.util.List;
@@ -17,7 +15,7 @@ import java.util.List;
 public class loginController {
 
     @Autowired
-    private accountRepository accountRepository;
+    private accountService accountService;
 
     @RequestMapping("/login_start")
     public String login_start(Model model) {
@@ -27,12 +25,34 @@ public class loginController {
     }
 
     @PostMapping("/signInAction")
-    public String signInAction(@ModelAttribute("account") Account account) throws Exception {
+    public String signInAction(@ModelAttribute("account") Account account) {
 
-        List<Account> accounts = accountRepository.findByEmail(account.getEmail());
-        if(account == null) throw new Exception("Account not found");
+        System.out.println(account.getEmail()+account.getPassword()+account.getType());
+        List<Account> accounts = accountService.getAccountByEmailAndPassword(account.getEmail(), account.getPassword());
+        System.out.println(accounts.size());
+        if(accounts.size()>=1) // find the account based on email and password
+        {
+            Account loggedinAccount = new Account();
+            loggedinAccount = accounts.get(0);
 
-        System.out.println("mapped log in");
-        return "home";
+            // the user is a customer
+            if(loggedinAccount.getType() == 0)
+                return "index";
+            // the user is a staff
+            else if(loggedinAccount.getType() == 1)
+                return "backend/staffHomePage";
+            // the user is a manager
+            else if(loggedinAccount.getType() == 2)
+                return "backend/stafflist";
+        }
+        else
+            try {
+                throw new Exception("Account not found");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        return "redirect:/login";
     }
+
+
 }
