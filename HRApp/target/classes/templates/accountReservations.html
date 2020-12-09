@@ -59,7 +59,7 @@
         <!-- END: NAVBAR -->
     </aside>
 
-	<div class="page-wrapper" style="width: 100%;">
+	<div class="page-wrapper" style="width: 80%;">
 		<form action="#" th:action="@{/showAccountHistory}" th:object="${account}"
 			  method="POST">
 
@@ -85,9 +85,7 @@
 					<td th:Date="${room.startDate}"></td>
 					<td th:text="${room.endDate}"></td>
 					<td th:text="${room.roomType.price}"></td>
-					<td>
-						<a th:href="@{/addRoomForReservationMain/{id}(id=${room.id})}" class="btn btn-danger">Book</a>
-					</td>
+
 				</tr>
 				</tbody>
 			</table>
