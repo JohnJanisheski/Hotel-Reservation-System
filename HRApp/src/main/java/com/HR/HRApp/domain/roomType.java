@@ -15,12 +15,16 @@ public class roomType {
     private String roomTypeName;// room type name
     private String image;//image on the homepage/introduction page
     private double price;//price
+
+    @Column(name = "roomType")
     private int type;//1: single room, 2: double room
+
     private int num;//the number of available rooms of this type
     private boolean isAllowSmoking; //false: not allow. true: allow
 
 
-    @OneToMany(targetEntity = room.class, mappedBy = "roomType", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany
+    @JoinColumn(name = "room_id")
     private Set<room> rooms = new HashSet<>();
 
     public roomType() {

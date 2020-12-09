@@ -13,22 +13,25 @@ public class room {
     private String roomName;//room number
     private String remark;//room description
     private String image;//room image
+
+    @Column(name = "roomType")
+    private int type;//1 is Single, 2 is double
+
     private int isLive;//1: empty room, 2: reserved, 3: moved in/occupied, 4: room is out of order, 5: checked out
     private int floor; //floor: 1, 2
     private boolean isClean; //isCleaned?
 
     @ManyToOne
-    @JoinColumn(name="room_id", referencedColumnName = "room_id", insertable = false, updatable = false)
     private roomType roomType;//room category
 
-//    @ManyToOne
-//    private reservation reservation; //Link to reservations
+    @ManyToOne
+    private reservation reservation;//reservation Info
 
 
     public room() {
     }
 
-    public room(String roomName, String remark, String image, com.HR.HRApp.domain.roomType roomType, int isLive, int floor, boolean isClean) {
+    public room(String roomName, String remark, String image, com.HR.HRApp.domain.roomType roomType, int isLive, int floor, boolean isClean, int type) {
         this.roomName = roomName;
         this.remark = remark;
         this.image = image;
@@ -36,6 +39,31 @@ public class room {
         this.isLive = isLive;
         this.floor = floor;
         this.isClean = isClean;
+        this.type = type;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public boolean isClean() {
+        return isClean;
+    }
+
+    public void setClean(boolean clean) {
+        isClean = clean;
+    }
+
+    public com.HR.HRApp.domain.reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(com.HR.HRApp.domain.reservation reservation) {
+        this.reservation = reservation;
     }
 
     public long getId() {

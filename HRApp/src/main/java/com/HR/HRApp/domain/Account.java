@@ -43,13 +43,11 @@ public class Account {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "order_History")
-    @OneToMany(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "reservation_id")
+    @OneToMany
+    @JoinColumn(name = "reservation")
     private Set<reservation> orderHistory = new HashSet<>();
 
     public Account(int type, String firstName, String lastName, String Email, String password){
-        // com.HR.HRApp.repositories.managerRepository managerRepository, com.HR.HRApp.repositories.customerRepository customerRepository) {
         this.type = type;
         this.firstName = firstName;
         this.lastName = lastName;
